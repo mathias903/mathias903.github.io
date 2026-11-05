@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mathias Wicht | Mediamatics apprentice, web development</title>
+<meta content="Portfolio of Mathias Wicht, mediamatics apprentice at CPNV in Sainte-Croix. Web development first, graphic design on top. Web lead for the 2026 Media Open Days." name="description"/>
+<meta content="#05070d" name="theme-color"/>
+<meta content="Mathias Wicht | Mediamatics apprentice, web development" property="og:title"/>
+<meta content="Websites, Figma mockups, brochures and graphic design." property="og:description"/>
+<meta content="assets/video/t1as-portfolio-poster.jpg" property="og:image"/>
+<link href="../assets/images/logos/logo-t1as.png" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; scroll-padding-top:84px; }
+
+  :root{
+    --bg:#05070d;
+    --bg-2:rgba(17,23,38,0.75);
+    --card:rgba(20,27,45,0.62);
+    --line:rgba(255,255,255,0.09);
+    --line-2:rgba(255,255,255,0.16);
+    --text:#e9edf5;
+    --text-2:#a3adc2;
+    --text-3:#6b7690;
+    --blue:#3b82f6;
+    --blue-2:#2563eb;
+    --cyan:#38bdf8;
+    --blue-soft:rgba(59,130,246,0.12);
+    --radius:4px;
+    --w:1120px;
+  }
+
+  /* Fond (repris de la v1) */
+  .bg{ position:fixed; inset:0; z-index:-1; pointer-events:none; overflow:hidden; background:var(--bg); }
+  .orb{ position:absolute; border-radius:50%; filter:blur(90px); opacity:0.55; }
+  .orb-1{ width:520px; height:520px; background:radial-gradient(circle, rgba(59,130,246,0.55), transparent 70%); top:-160px; left:-120px; animation:float1 22s ease-in-out infinite; }
+  .orb-2{ width:460px; height:460px; background:radial-gradient(circle, rgba(56,189,248,0.35), transparent 70%); bottom:-140px; right:-100px; animation:float2 26s ease-in-out infinite; }
+  .orb-3{ width:360px; height:360px; background:radial-gradient(circle, rgba(29,78,216,0.4), transparent 70%); top:40%; left:55%; animation:float3 30s ease-in-out infinite; }
+  @keyframes float1{ 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(60px,80px); } }
+  @keyframes float2{ 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(-70px,-50px); } }
+  @keyframes float3{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(-40px,60px) scale(1.1); } }
+  .grid-bg{ position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px); background-size:64px 64px; -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 20%, black 40%, transparent 90%); mask-image:radial-gradient(ellipse 80% 60% at 50% 20%, black 40%, transparent 90%); }
+  .bg-fade{ position:absolute; inset:0; background:radial-gradient(ellipse 60% 50% at 50% 0%, transparent 0%, var(--bg) 85%); opacity:0.6; }
+  #progress{ position:fixed; top:0; left:0; height:3px; width:0; z-index:60; background:linear-gradient(90deg,#1d4ed8,#3b82f6,#38bdf8); box-shadow:0 0 12px rgba(59,130,246,0.8); }
+
+  body{ background:var(--bg); color:var(--text); font-family:'Instrument Sans',system-ui,sans-serif; font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3,h4{ font-family:'Bricolage Grotesque','Instrument Sans',sans-serif; font-weight:700; line-height:1.12; letter-spacing:-0.025em; }
+  a{ color:inherit; text-decoration:none; }
+  img{ display:block; max-width:100%; }
+  ul, ol{ list-style:none; }
+  button{ font:inherit; color:inherit; background:none; border:none; cursor:pointer; }
+  ::selection{ background:var(--blue); color:#fff; }
+  :focus-visible{ outline:2px solid var(--blue); outline-offset:3px; border-radius:4px; }
+
+  .wrap{ max-width:var(--w); margin:0 auto; padding:0 28px; }
+
+  .btn{ display:inline-flex; align-items:center; gap:8px; padding:12px 20px; border-radius:4px; font-weight:500; font-size:0.95rem; border:1px solid var(--line-2); background:rgba(5,7,13,0.35); transition:background .2s, border-color .2s, color .2s, transform .2s; }
+  .btn svg{ width:16px; height:16px; flex-shrink:0; }
+  .btn:hover{ border-color:var(--blue); transform:translateY(-1px); }
+  .btn-blue{ background:var(--blue); border-color:var(--blue); color:#fff; box-shadow:none; }
+  .btn-blue:hover{ background:var(--blue-2); border-color:var(--blue-2); }
+  .tag{ display:inline-block; font-size:0.78rem; font-weight:500; color:var(--blue); background:var(--blue-soft); padding:4px 10px; border-radius:3px; }
+
+  /* ===== En-tête ===== */
+  header{ position:sticky; top:0; z-index:50; background:rgba(5,7,13,0.75); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
+  .nav{ display:flex; align-items:center; justify-content:space-between; height:68px; gap:24px; }
+  .brand{ display:flex; align-items:center; gap:12px; font-family:'Bricolage Grotesque',sans-serif; font-weight:600; }
+  .brand .logo{ height:22px; width:auto; }
+  .brand .sep{ width:1px; height:22px; background:var(--line-2); }
+  .menu{ display:flex; gap:28px; font-size:0.93rem; color:var(--text-2); }
+  .menu a{ position:relative; padding:4px 0; transition:color .2s; }
+  .menu a:hover, .menu a.on{ color:var(--text); }
+  .menu a.on::after{ content:''; position:absolute; left:0; right:0; bottom:-4px; height:2px; background:var(--blue); border-radius:2px; }
+  .nav-end{ display:flex; gap:10px; align-items:center; }
+  .lang{ display:inline-flex; border:1px solid rgba(255,255,255,.12); border-radius:3px; overflow:hidden; font-size:0.8rem; font-weight:600; letter-spacing:.04em; }
+  .lang a, .lang span{ padding:7px 10px; color:#9aa3b5; }
+  .lang a:hover{ color:#fff; }
+  .lang .on{ background:rgba(59,130,246,.18); color:#fff; }
+  @media (max-width:560px){ .brand .sep, .brand span{ display:none; } }
+  .nav .btn{ padding:9px 16px; font-size:0.9rem; }
+  .burger{ display:none; width:40px; height:40px; border-radius:3px; border:1px solid var(--line-2); align-items:center; justify-content:center; }
+  .burger span, .burger span::before, .burger span::after{ display:block; width:18px; height:2px; background:var(--text); position:relative; transition:.25s; }
+  .burger span::before, .burger span::after{ content:''; position:absolute; left:0; }
+  .burger span::before{ top:-6px; } .burger span::after{ top:6px; }
+  .burger.open span{ background:transparent; }
+  .burger.open span::before{ top:0; transform:rotate(45deg); }
+  .burger.open span::after{ top:0; transform:rotate(-45deg); }
+
+  /* ===== Intro ===== */
+  .intro{ padding:84px 0 72px; }
+  .intro-grid{ display:grid; grid-template-columns:1fr 340px; gap:64px; align-items:center; }
+  .hello{ color:var(--blue); font-weight:500; margin-bottom:14px; }
+  .intro h1{ font-size:clamp(2.4rem,5.2vw,3.8rem); margin-bottom:20px; }
+  .intro h1 span{ display:block; color:var(--text-2); font-weight:500; font-size:0.52em; margin-top:12px; letter-spacing:-0.01em; }
+  .intro p{ color:var(--text-2); font-size:1.08rem; max-width:590px; }
+  .intro p + p{ margin-top:12px; }
+  .intro p strong{ color:var(--text); font-weight:500; }
+  .intro .actions{ display:flex; gap:12px; flex-wrap:wrap; margin-top:32px; }
+  .portrait img{ width:100%; aspect-ratio:4/5; object-fit:cover; object-position:center 20%; border-radius:6px; border:1px solid var(--line-2); box-shadow:0 30px 70px rgba(0,0,0,0.45); }
+  .portrait figcaption{ margin-top:12px; font-size:0.86rem; color:var(--text-3); display:flex; align-items:center; gap:8px; }
+  .dot{ width:8px; height:8px; border-radius:50%; background:#22c55e; flex-shrink:0; animation:pulse 2.2s infinite; }
+  @keyframes pulse{ 0%{ box-shadow:0 0 0 0 rgba(34,197,94,0.5); } 70%{ box-shadow:0 0 0 8px rgba(34,197,94,0); } 100%{ box-shadow:0 0 0 0 rgba(34,197,94,0); } }
+
+  .facts{ display:grid; grid-template-columns:repeat(4,1fr); margin-top:64px; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--bg-2); backdrop-filter:blur(6px); }
+  .facts div{ padding:18px 22px; }
+  .facts div + div{ border-left:1px solid var(--line); }
+  .facts small{ display:block; font-size:0.78rem; color:var(--text-3); margin-bottom:4px; }
+  .facts strong{ font-weight:500; font-size:0.96rem; }
+
+  /* ===== Sections ===== */
+  section.block{ padding:96px 0; border-top:1px solid var(--line); }
+  .head{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:44px; flex-wrap:wrap; }
+  .kicker{ display:block; font-size:0.8rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--blue); margin-bottom:10px; }
+  .head h2{ font-size:clamp(1.8rem,3.4vw,2.4rem); }
+  .head p{ color:var(--text-2); max-width:560px; margin-top:10px; }
+  .head > a{ color:var(--blue); font-size:0.94rem; }
+  .head > a:hover{ text-decoration:underline; }
+
+  /* ===== Profil ===== */
+  .profile{ display:grid; grid-template-columns:1.25fr 1fr; gap:24px; }
+  .side{ border:1px solid var(--line); border-radius:6px; background:var(--card); padding:32px; }
+  .side.main{ border-color:rgba(59,130,246,0.35); background:linear-gradient(160deg, rgba(59,130,246,0.14), rgba(20,27,45,0.62) 55%); }
+  .side .level{ display:inline-flex; align-items:center; gap:8px; font-size:0.8rem; font-weight:500; color:var(--text-2); margin-bottom:16px; }
+  .side.main .level{ color:var(--cyan); }
+  .side .level i{ width:8px; height:8px; border-radius:50%; background:currentColor; }
+  .side h3{ font-size:1.4rem; margin-bottom:10px; }
+  .side > p{ color:var(--text-2); margin-bottom:20px; }
+  .steps{ display:grid; gap:10px; }
+  .steps li{ display:flex; gap:14px; align-items:flex-start; padding:12px 14px; border-radius:4px; background:rgba(5,7,13,0.35); border:1px solid var(--line); }
+  .steps b{ font-family:'Bricolage Grotesque',sans-serif; font-weight:600; color:var(--blue); font-size:0.85rem; min-width:22px; padding-top:1px; }
+  .steps span{ color:var(--text-2); font-size:0.93rem; }
+  .steps span strong{ color:var(--text); font-weight:500; display:block; }
+  .plain li{ position:relative; padding:10px 0 10px 22px; border-top:1px solid var(--line); color:var(--text-2); font-size:0.94rem; }
+  .plain li::before{ content:''; position:absolute; left:2px; top:19px; width:8px; height:8px; border-radius:2px; background:var(--text-3); }
+  .plain li strong{ color:var(--text); font-weight:500; }
+
+  /* ===== Vidéo ===== */
+  .video{ border-radius:6px; overflow:hidden; border:1px solid var(--line-2); background:#000; box-shadow:0 30px 70px rgba(0,0,0,0.45); }
+  .video video{ display:block; width:100%; aspect-ratio:16/9; background:#000; }
+
+  /* ===== Projets phares ===== */
+  .feature{ display:grid; grid-template-columns:1.1fr 1fr; border:1px solid var(--line); border-radius:6px; overflow:hidden; background:var(--card); margin-bottom:24px; }
+  .po-media{ position:relative; background:linear-gradient(180deg,#a9b6d6,#e3c2c6); min-height:460px; overflow:hidden; }
+  .po-browser{ position:absolute; left:5%; top:52px; width:66%; bottom:40px; border-radius:4px; overflow:hidden; background:#fff; box-shadow:0 24px 50px rgba(0,0,0,0.35); cursor:zoom-in; display:flex; flex-direction:column; padding:0; border:0; text-align:left; }
+  .po-bar{ height:28px; flex:none; background:#1b2131; display:flex; align-items:center; gap:6px; padding:0 12px; }
+  .po-bar i{ width:8px; height:8px; border-radius:50%; background:#ff5f57; } .po-bar i:nth-child(2){ background:#febc2e; } .po-bar i:nth-child(3){ background:#28c840; }
+  .po-bar em{ font-style:normal; font-size:0.68rem; color:#9aa3b5; margin-left:10px; background:#262d40; padding:3px 10px; border-radius:3px; }
+  .po-screen{ flex:1; overflow:hidden; display:block; }
+  .po-screen img, .po-maq img{ width:100%; display:block; transition:transform 8s ease; }
+  .po-browser:hover .po-screen img{ transform:translateY(-70%); }
+  .po-maq{ position:absolute; right:5%; top:84px; width:23%; bottom:40px; overflow:hidden; border-radius:4px; background:#fff; box-shadow:0 20px 44px rgba(0,0,0,0.35); outline:1px solid #0d99ff; outline-offset:3px; cursor:zoom-in; padding:0; border:0; }
+  .po-maq:hover img{ transform:translateY(-78%); }
+  .po-label{ position:absolute; font-size:0.7rem; color:#1b2131; font-weight:600; letter-spacing:.02em; }
+  .po-label.b{ left:5%; top:28px; } .po-label.m{ right:5%; top:60px; color:#0d6fd1; }
+  .po-credit{ position:absolute; left:12px; bottom:10px; font-size:0.72rem; color:rgba(27,33,49,0.7); }
+  .f-body{ padding:40px; display:flex; flex-direction:column; }
+  .f-body .tag{ margin-bottom:14px; align-self:flex-start; }
+  .f-body h3{ font-size:1.55rem; margin-bottom:6px; }
+  .meta{ font-size:0.88rem; color:var(--text-3); margin-bottom:18px; }
+  .f-body > p{ color:var(--text-2); margin-bottom:18px; }
+  .checks li{ position:relative; padding-left:26px; color:var(--text-2); font-size:0.95rem; margin-bottom:8px; }
+  .checks li::before{ content:''; position:absolute; left:2px; top:8px; width:12px; height:7px; border-left:2px solid var(--blue); border-bottom:2px solid var(--blue); transform:rotate(-45deg); }
+  .f-body .actions{ margin-top:auto; padding-top:24px; display:flex; gap:12px; flex-wrap:wrap; }
+
+  .feature.figma{ grid-template-columns:1fr 1.1fr; }
+  .fig-media{ position:relative; min-height:480px; overflow:hidden; background:#1e1e1e; border-left:1px solid var(--line); }
+  .fig-bar{ position:absolute; top:0; left:0; right:0; height:34px; background:#2c2c2c; border-bottom:1px solid #3a3a3a; display:flex; align-items:center; gap:8px; padding:0 14px; font-size:0.74rem; color:#b3b3b3; z-index:2; }
+  .fig-bar i{ width:9px; height:9px; border-radius:50%; }
+  .fig-bar i:nth-child(1){ background:#ff5f57; } .fig-bar i:nth-child(2){ background:#febc2e; } .fig-bar i:nth-child(3){ background:#28c840; }
+  .fig-bar span{ margin-left:10px; }
+  .fig-desk{ position:absolute; left:6%; top:64px; width:64%; bottom:28px; overflow:hidden; border-radius:4px; box-shadow:0 20px 50px rgba(0,0,0,0.5); background:#fff; cursor:zoom-in; outline:1px solid #0d99ff; outline-offset:3px; }
+  .fig-desk img{ width:100%; transition:transform 7s ease; }
+  .fig-desk:hover img{ transform:translateY(-62%); }
+  .fig-mob{ position:absolute; right:6%; top:96px; width:22%; bottom:28px; overflow:hidden; border-radius:4px; box-shadow:0 20px 50px rgba(0,0,0,0.5); background:#fff; cursor:zoom-in; outline:1px solid #0d99ff; outline-offset:3px; }
+  .fig-mob img{ width:100%; transition:transform 7s ease; }
+  .fig-mob:hover img{ transform:translateY(-80%); }
+  .fig-label{ position:absolute; font-size:0.7rem; color:#0d99ff; z-index:2; }
+  .fig-label.d{ left:6%; top:44px; } .fig-label.m{ right:6%; top:76px; }
+
+  /* ===== Autres projets ===== */
+  .projects{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+  .project{ display:flex; flex-direction:column; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--card); transition:border-color .25s, transform .25s; }
+  .project:hover{ border-color:var(--line-2); transform:translateY(-3px); }
+  .project .pic{ aspect-ratio:16/10; background:var(--bg-2); border-bottom:1px solid var(--line); overflow:hidden; display:flex; align-items:center; justify-content:center; }
+  .project .pic img{ width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
+  .project:hover .pic img{ transform:scale(1.03); }
+  .ai-badge{ position:absolute; left:10px; bottom:10px; z-index:2; font-size:0.7rem; font-weight:600; color:#fff; background:rgba(5,7,13,0.78); border:1px solid rgba(255,255,255,0.18); padding:4px 8px; border-radius:3px; pointer-events:none; }
+  .project .pic.white{ background:#fff; }
+  .project .pic.white img{ width:34%; height:auto; object-fit:contain; }
+  .project .txt{ padding:22px 24px 24px; flex:1; display:flex; flex-direction:column; }
+  .row{ display:flex; justify-content:space-between; gap:12px; align-items:center; margin-bottom:10px; }
+  .row > span:last-child{ font-size:0.85rem; color:var(--text-3); }
+  .project h3{ font-size:1.12rem; margin-bottom:10px; }
+  .project p{ color:var(--text-2); font-size:0.93rem; margin-bottom:14px; }
+  .tools{ display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; }
+  .tools span{ font-size:0.78rem; color:var(--text-2); border:1px solid var(--line-2); padding:3px 9px; border-radius:3px; }
+  .project .more{ display:inline-block; margin-top:16px; color:var(--blue); font-size:0.9rem; font-weight:500; }
+  .project .more:hover{ text-decoration:underline; }
+  .note{ margin-top:24px; font-size:0.88rem; color:var(--text-3); }
+
+  /* ===== Print ===== */
+  .print-card{ border:1px solid var(--line); border-radius:6px; background:var(--card); overflow:hidden; display:grid; grid-template-columns:220px 1fr; }
+  .print-card.wide{ grid-template-columns:400px 1fr; margin-bottom:24px; }
+  .print-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+  .cover{ position:relative; display:flex; align-items:center; justify-content:center; padding:34px; background:radial-gradient(120% 90% at 30% 20%, rgba(59,130,246,0.18), rgba(5,7,13,0.35)); border-right:1px solid var(--line); perspective:900px; }
+  .cover .book3d{ position:relative; display:block; width:100%; transform:rotateY(-14deg); transition:transform .5s ease; }
+  .cover:hover .book3d{ transform:rotateY(-4deg) translateY(-4px); }
+  .cover img{ width:100%; border-radius:2px 3px 3px 2px; box-shadow:18px 22px 40px rgba(0,0,0,0.55); }
+  .cover .book3d::before{ content:''; position:absolute; left:0; top:0; bottom:0; width:10px; background:linear-gradient(90deg, rgba(0,0,0,0.35), transparent); z-index:1; }
+  .cover.landscape .book3d{ transform:none; }
+  .cover.landscape:hover .book3d{ transform:translateY(-4px); }
+  .cover.landscape .book3d::before{ display:none; }
+  .cover.landscape img{ border-radius:3px; }
+  .cover .pages{ position:absolute; top:12px; left:12px; font-size:0.74rem; padding:3px 9px; border-radius:3px; background:rgba(5,7,13,0.8); border:1px solid var(--line-2); color:var(--text-2); z-index:2; }
+  .print-body{ padding:30px 32px; display:flex; flex-direction:column; }
+  .print-card.wide .print-body h3{ font-size:1.55rem; }
+  .print-body h3{ font-size:1.25rem; margin-bottom:10px; }
+  .print-body > p{ color:var(--text-2); font-size:0.95rem; margin-bottom:16px; }
+  .print-body .actions{ margin-top:auto; padding-top:22px; display:flex; gap:12px; flex-wrap:wrap; }
+  .thumbs{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:6px 0 4px; }
+  .thumbs button{ border-radius:4px; overflow:hidden; border:1px solid var(--line-2); transition:transform .2s, border-color .2s; }
+  .thumbs button:hover{ transform:translateY(-3px); border-color:var(--blue); }
+  .thumbs img{ width:100%; aspect-ratio:899/1274; object-fit:cover; }
+
+  /* ===== Créations ===== */
+  .gallery{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; align-items:start; }
+  .item{ min-width:0; width:100%; text-align:left; display:flex; flex-direction:column; gap:10px; }
+  .item .pic{ aspect-ratio:4/5; border-radius:4px; overflow:hidden; border:1px solid var(--line); background:var(--bg-2); }
+  .item .pic img{ width:100%; height:100%; object-fit:cover; object-position:top; transition:transform .5s ease; }
+  .item:hover .pic img{ transform:scale(1.04); }
+  .item .pic.white{ background:#fff; display:flex; align-items:center; justify-content:center; }
+  .item .pic.white img{ width:60%; height:auto; object-fit:contain; }
+  .item strong{ font-weight:500; font-size:0.95rem; display:block; }
+  .item small{ color:var(--text-3); font-size:0.82rem; }
+  .insta{ border:1px dashed var(--line-2); border-radius:4px; padding:24px; aspect-ratio:4/5; display:flex; flex-direction:column; justify-content:center; gap:10px; transition:border-color .2s; background:rgba(5,7,13,0.3); }
+  .insta:hover{ border-color:var(--blue); }
+  .insta img{ width:110px; }
+  .insta strong{ font-family:'Bricolage Grotesque',sans-serif; font-size:1.1rem; }
+  .insta p{ font-size:0.88rem; color:var(--text-2); }
+  .insta span{ color:var(--blue); font-weight:500; font-size:0.9rem; }
+
+  /* ===== Parcours ===== */
+  .path{ display:grid; grid-template-columns:1fr 1fr; gap:56px; }
+  .path h3{ font-size:1.05rem; color:var(--text-2); font-weight:500; margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid var(--line); }
+  .step{ position:relative; padding:0 0 28px 26px; border-left:1px solid var(--line-2); margin-left:6px; }
+  .step:last-child{ padding-bottom:0; }
+  .step::before{ content:''; position:absolute; left:-6px; top:6px; width:11px; height:11px; border-radius:50%; background:var(--bg); border:2px solid var(--blue); }
+  .step.now::before{ background:var(--blue); box-shadow:0 0 0 4px rgba(59,130,246,0.2); }
+  .step time{ display:block; font-size:0.85rem; color:var(--blue); margin-bottom:2px; }
+  .step h4{ font-size:1.02rem; margin-bottom:2px; }
+  .step .where{ font-size:0.88rem; color:var(--text-3); margin-bottom:8px; }
+  .step p, .step li{ color:var(--text-2); font-size:0.93rem; }
+  .step li{ position:relative; padding-left:14px; margin-bottom:3px; }
+  .step li::before{ content:''; position:absolute; left:0; top:10px; width:5px; height:5px; border-radius:50%; background:var(--text-3); }
+
+  /* ===== Compétences ===== */
+  .skills{ display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:20px; }
+  .skill{ border:1px solid var(--line); border-radius:var(--radius); padding:24px; background:var(--card); }
+  .skill.main{ border-color:rgba(59,130,246,0.35); background:linear-gradient(160deg, rgba(59,130,246,0.12), rgba(20,27,45,0.62) 60%); }
+  .skill h3{ font-size:1rem; margin-bottom:4px; display:flex; align-items:center; gap:10px; }
+  .skill h3 svg{ width:20px; height:20px; stroke:var(--blue); }
+  .skill .sub{ font-size:0.8rem; color:var(--text-3); margin-bottom:14px; display:block; }
+  .skill li{ display:flex; justify-content:space-between; gap:10px; padding:8px 0; border-top:1px solid var(--line); font-size:0.93rem; }
+  .skill li span{ color:var(--text-3); font-size:0.84rem; text-align:right; }
+
+  /* ===== À propos ===== */
+  .about{ display:grid; grid-template-columns:1.2fr 1fr; gap:56px; align-items:start; }
+  .about h2{ font-size:clamp(1.8rem,3.4vw,2.4rem); margin-bottom:20px; }
+  .about-text p{ color:var(--text-2); margin-bottom:14px; }
+  .about-text p strong{ color:var(--text); font-weight:500; }
+  .hobbies{ display:grid; gap:14px; }
+  .hobby{ display:flex; gap:16px; padding:18px 20px; border:1px solid var(--line); border-radius:var(--radius); background:var(--card); }
+  .hobby .ico{ width:42px; height:42px; border-radius:4px; background:var(--blue-soft); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .hobby .ico svg{ width:20px; height:20px; stroke:var(--blue); }
+  .hobby h4{ font-size:0.98rem; margin-bottom:2px; }
+  .hobby p{ color:var(--text-2); font-size:0.9rem; }
+
+  /* ===== CV ===== */
+  .cv{ display:grid; grid-template-columns:260px 1fr; gap:48px; align-items:center; padding:36px; border:1px solid var(--line); border-radius:6px; background:var(--card); }
+  .cv-thumb{ display:block; border-radius:3px; overflow:hidden; border:1px solid var(--line); box-shadow:0 18px 40px rgba(0,0,0,0.35); background:#fff; transition:transform .3s; }
+  .cv-thumb:hover{ transform:translateY(-4px) rotate(-1deg); }
+  .cv h2{ font-size:clamp(1.6rem,3vw,2.1rem); margin-bottom:12px; }
+  .cv p{ color:var(--text-2); margin-bottom:8px; max-width:520px; }
+  .cv .actions{ display:flex; gap:12px; flex-wrap:wrap; margin-top:22px; }
+
+  /* ===== Contact ===== */
+  .contact{ display:grid; grid-template-columns:1fr 1.2fr; gap:56px; }
+  .contact h2{ font-size:clamp(1.8rem,3.4vw,2.4rem); margin-bottom:12px; }
+  .contact-info > p{ color:var(--text-2); margin-bottom:26px; }
+  .links a, .links div{ display:flex; align-items:center; gap:14px; padding:14px 0; border-top:1px solid var(--line); transition:color .2s; }
+  .links > :last-child{ border-bottom:1px solid var(--line); }
+  .links a:hover{ color:var(--blue); }
+  .links svg{ width:18px; height:18px; stroke:var(--blue); flex-shrink:0; }
+  .links small{ display:block; font-size:0.78rem; color:var(--text-3); }
+  form{ display:grid; grid-template-columns:1fr 1fr; gap:16px; padding:28px; border:1px solid var(--line); border-radius:var(--radius); background:var(--card); }
+  .field{ display:flex; flex-direction:column; gap:6px; }
+  .field.full{ grid-column:1 / -1; }
+  label{ font-size:0.86rem; color:var(--text-2); }
+  input, select, textarea{ width:100%; font:inherit; font-size:0.95rem; color:var(--text); background:rgba(5,7,13,0.6); border:1px solid var(--line-2); border-radius:3px; padding:11px 13px; outline:none; transition:border-color .2s; }
+  input:focus, select:focus, textarea:focus{ border-color:var(--blue); }
+  textarea{ min-height:130px; resize:vertical; }
+  select option{ background:#111726; }
+  form .btn{ justify-self:start; }
+  form small{ grid-column:1 / -1; font-size:0.8rem; color:var(--text-3); }
+
+  footer{ padding:32px 0 40px; border-top:1px solid var(--line); }
+  .foot{ display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:0.88rem; color:var(--text-3); align-items:center; }
+  .foot nav{ display:flex; gap:20px; }
+  .foot a:hover{ color:var(--text); }
+  .foot-brand{ display:flex; align-items:center; gap:12px; }
+  .foot-brand img{ height:16px; width:auto; }
+
+  /* ===== Visionneuse ===== */
+  .viewer{ position:fixed; inset:0; z-index:100; background:rgba(3,5,10,0.94); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; padding:24px; opacity:0; visibility:hidden; transition:opacity .25s, visibility .25s; }
+  .viewer.open{ opacity:1; visibility:visible; }
+  .viewer figure{ max-width:min(92vw,1000px); text-align:center; }
+  .viewer img{ max-height:80vh; max-width:100%; margin:0 auto; border-radius:4px; }
+  .viewer.tall{ align-items:flex-start; overflow-y:auto; padding:70px 24px 40px; }
+  .viewer.tall figure{ width:min(88vw, var(--tw, 1000px)); max-width:none; }
+  .viewer.tall img{ max-height:none; width:100%; border-radius:3px; }
+  .viewer figcaption{ margin-top:14px; color:var(--text-2); font-size:0.92rem; }
+  .viewer figcaption strong{ color:var(--text); font-weight:500; }
+  .v-btn{ position:fixed; width:44px; height:44px; border-radius:4px; border:1px solid var(--line-2); background:#111726; display:flex; align-items:center; justify-content:center; z-index:2; }
+  .v-btn:hover{ border-color:var(--blue); }
+  .v-btn svg{ width:18px; height:18px; stroke:var(--text); }
+  .v-close{ top:20px; right:20px; }
+  .v-prev{ left:20px; top:50%; margin-top:-22px; }
+  .v-next{ right:20px; top:50%; margin-top:-22px; }
+
+  /* ===== Liseuse de brochures ===== */
+  .reader{ position:fixed; inset:0; z-index:110; background:radial-gradient(ellipse at 50% 40%, #121a2c 0%, #04060b 75%); display:grid; grid-template-rows:auto 1fr auto; opacity:0; visibility:hidden; transition:opacity .3s, visibility .3s; }
+  .reader.open{ opacity:1; visibility:visible; }
+  .r-top{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 24px; border-bottom:1px solid var(--line); }
+  .r-top h3{ font-size:1rem; }
+  .r-top small{ display:block; font-size:0.82rem; color:var(--text-3); font-family:'Instrument Sans',sans-serif; font-weight:400; }
+  .r-tools{ display:flex; align-items:center; gap:12px; }
+  .r-count{ font-size:0.88rem; color:var(--text-2); text-align:right; }
+  .r-btn{ width:40px; height:40px; border-radius:4px; border:1px solid var(--line-2); background:rgba(17,23,38,0.85); display:flex; align-items:center; justify-content:center; transition:border-color .2s, opacity .2s; }
+  .r-btn:hover{ border-color:var(--blue); }
+  .r-btn:disabled{ opacity:0.25; cursor:default; border-color:var(--line-2); }
+  .r-btn svg{ width:18px; height:18px; stroke:var(--text); }
+  .r-stage{ position:relative; display:flex; align-items:center; justify-content:center; min-height:0; overflow:hidden; }
+  .r-stage .side-btn{ position:absolute; top:50%; margin-top:-24px; width:48px; height:48px; z-index:6; }
+  .r-stage .side-btn.prev{ left:20px; } .r-stage .side-btn.next{ right:20px; }
+  .book{ position:relative; display:flex; perspective:2600px; transition:transform .6s cubic-bezier(.4,.1,.2,1); }
+  .book.cover-only{ transform:translateX(calc(var(--pw) / -2)); }
+  .book.back-only{ transform:translateX(calc(var(--pw) / 2)); }
+  .slot{ position:relative; width:var(--pw); height:var(--ph); background:#fff; overflow:hidden; cursor:pointer; }
+  .slot img{ width:100%; height:100%; object-fit:cover; display:block; user-select:none; -webkit-user-drag:none; }
+  .slot.empty{ background:transparent; cursor:default; box-shadow:none !important; }
+  .slot.empty::after{ display:none; }
+  .slot.left{ box-shadow:-12px 20px 44px rgba(0,0,0,0.5); }
+  .slot.right{ box-shadow:12px 20px 44px rgba(0,0,0,0.5); }
+  .slot.left::after{ content:''; position:absolute; top:0; bottom:0; right:0; width:44px; background:linear-gradient(90deg, transparent, rgba(0,0,0,0.16)); pointer-events:none; }
+  .slot.right::after{ content:''; position:absolute; top:0; bottom:0; left:0; width:44px; background:linear-gradient(270deg, transparent, rgba(0,0,0,0.2)); pointer-events:none; }
+  .book.single .slot.left{ display:none; }
+  .book.single .slot.right{ box-shadow:0 20px 50px rgba(0,0,0,0.5); border-radius:4px; }
+  .book.single .slot.right::after{ display:none; }
+  .leaf{ position:absolute; top:0; width:var(--pw); height:var(--ph); transform-style:preserve-3d; z-index:5; transition:transform .8s cubic-bezier(.45,.05,.25,1); }
+  .leaf.to-left{ left:var(--pw); transform-origin:left center; }
+  .leaf.to-right{ left:0; transform-origin:right center; }
+  .leaf .face{ position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; background:#fff; overflow:hidden; }
+  .leaf .face.blank{ background:transparent; }
+  .leaf .face img{ width:100%; height:100%; object-fit:cover; }
+  .leaf .back{ transform:rotateY(180deg); }
+  .leaf .shade{ position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .4s; }
+  .leaf.to-left .front .shade{ background:linear-gradient(90deg, rgba(0,0,0,0.35), rgba(0,0,0,0)); }
+  .leaf.to-right .front .shade{ background:linear-gradient(270deg, rgba(0,0,0,0.35), rgba(0,0,0,0)); }
+  .leaf.flipping .front .shade{ opacity:1; }
+  .single-in{ animation:pageIn .45s cubic-bezier(.2,.7,.2,1); }
+  .single-in.back{ animation-name:pageInBack; }
+  @keyframes pageIn{ from{ opacity:0; transform:translateX(40px); } to{ opacity:1; transform:none; } }
+  @keyframes pageInBack{ from{ opacity:0; transform:translateX(-40px); } to{ opacity:1; transform:none; } }
+  .r-bottom{ border-top:1px solid var(--line); }
+  .r-strip{ display:flex; gap:8px; overflow-x:auto; padding:12px 24px 8px; scrollbar-width:thin; }
+  .r-strip button{ flex:0 0 auto; height:70px; border-radius:3px; overflow:hidden; border:2px solid transparent; opacity:0.5; transition:opacity .2s, border-color .2s; }
+  .r-strip button:hover{ opacity:0.9; }
+  .r-strip button.on{ border-color:var(--blue); opacity:1; }
+  .r-strip img{ height:100%; width:auto; }
+  .r-hint{ font-size:0.78rem; color:var(--text-3); text-align:center; padding:0 16px 12px; }
+
+  .fade{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+  .fade.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion:reduce){ *{ transition:none !important; animation:none !important; } .fade{ opacity:1; transform:none; } html{ scroll-behavior:auto; } }
+
+  /* ===== Responsive ===== */
+  @media (max-width:980px){
+    .intro-grid{ grid-template-columns:1fr; gap:40px; }
+    .portrait{ max-width:300px; }
+    .facts{ grid-template-columns:1fr 1fr; }
+    .facts div:nth-child(3){ border-left:none; }
+    .facts div:nth-child(n+3){ border-top:1px solid var(--line); }
+    .profile{ grid-template-columns:1fr; }
+    .feature, .feature.figma{ grid-template-columns:1fr; }
+    .feature.figma .fig-media{ order:-1; border-left:none; border-bottom:1px solid var(--line); }
+    .po-media, .fig-media{ min-height:440px; }
+    .projects{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .print-card.wide{ grid-template-columns:280px 1fr; }
+    .gallery{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .skills{ grid-template-columns:1fr 1fr; }
+    .path, .about, .contact{ grid-template-columns:1fr; gap:40px; }
+    .cv{ grid-template-columns:200px 1fr; gap:32px; }
+  }
+  @media (max-width:760px){
+    .menu{ position:fixed; top:68px; left:0; right:0; flex-direction:column; gap:0; background:rgba(5,7,13,0.97); border-bottom:1px solid var(--line); padding:8px 28px 16px; display:none; }
+    .menu.open{ display:flex; }
+    .menu a{ padding:12px 0; border-bottom:1px solid var(--line); }
+    .menu a.on::after{ display:none; }
+    .burger{ display:flex; }
+    .nav .btn .lbl{ display:none; }
+    .projects{ grid-template-columns:1fr; }
+    .print-card, .print-card.wide, .print-grid{ grid-template-columns:1fr; }
+    .cover{ border-right:none; border-bottom:1px solid var(--line); }
+    .cover .book3d{ max-width:220px; }
+    .cover.landscape .book3d{ max-width:300px; }
+    .print-body{ padding:24px 22px; }
+    .gallery{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+    .insta{ grid-column:1 / -1; aspect-ratio:auto; }
+    .cv{ grid-template-columns:1fr; padding:24px; }
+    .cv-thumb{ max-width:220px; }
+    .r-stage .side-btn{ top:auto; bottom:12px; margin:0; }
+    .r-stage .side-btn.prev{ left:calc(50% - 56px); } .r-stage .side-btn.next{ right:calc(50% - 56px); }
+    .r-top{ padding:12px 16px; }
+    .r-top small{ display:none; }
+    .r-count{ white-space:nowrap; font-size:0.82rem; }
+  }
+  @media (max-width:520px){
+    .wrap{ padding:0 20px; }
+    .intro{ padding-top:48px; }
+    section.block{ padding:72px 0; }
+    .facts{ grid-template-columns:1fr; }
+    .facts div + div{ border-left:none; border-top:1px solid var(--line); }
+    .side{ padding:24px 20px; }
+    .po-media, .fig-media{ min-height:340px; }
+    .f-body{ padding:26px 22px; }
+    .skills{ grid-template-columns:1fr; }
+    form{ grid-template-columns:1fr; padding:20px; }
+    .v-prev, .v-next{ top:auto; bottom:20px; margin:0; }
+    .v-prev{ left:calc(50% - 54px); } .v-next{ right:calc(50% - 54px); }
+  }
+</style>
+</head>
+<body>
+<div aria-hidden="true" class="bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div><div class="grid-bg"></div><div class="bg-fade"></div></div>
+<div id="progress"></div>
+<header>
+<div class="wrap nav">
+<a aria-label="Mathias Wicht, back to top" class="brand" href="#haut"><img alt="T1as" class="logo" src="../assets/images/brand/t1as-logo.png"/><i class="sep"></i><span>Mathias Wicht</span></a>
+<nav class="menu" id="menu">
+<a href="#profil">Profile</a>
+<a href="#projets">Web projects</a>
+<a href="#print">Print</a>
+<a href="#creations">Creations</a>
+<a href="#parcours">Background</a>
+<a href="#contact">Contact</a>
+</nav>
+<div class="nav-end">
+<div aria-label="Language" class="lang"><a href="../index.html" hreflang="fr">FR</a><span class="on">EN</span></div>
+<a class="btn btn-blue" download="" href="../documents/cv-mathias-wicht.pdf">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>
+<span class="lbl">My CV</span>
+</a>
+<button aria-label="Open the menu" class="burger" id="burger"><span></span></button>
+</div>
+</div>
+</header>
+<main id="haut">
+<!-- Intro -->
+<section class="intro">
+<div class="wrap">
+<div class="intro-grid">
+<div>
+<p class="hello">Hi, I'm</p>
+<h1>Mathias Wicht <span>Mediamatics apprentice, focused on web development</span></h1>
+<p>I'm in the 3<sup>rd</sup> year of my Swiss federal VET diploma (CFC) in mediamatics at CPNV in Sainte-Croix. My field is <strong>the web</strong>: designing a site in Figma, coding it, testing it on mobile and putting it online.</p>
+<p><strong>Graphic design</strong> comes on top of that. I use it for my mockups, my brochures and the posters I make in my free time. This year, I'm also the web lead for the mediamatics Open Days.</p>
+<div class="actions">
+<a class="btn btn-blue" href="#projets">See my web projects</a>
+<a class="btn" download="" href="../documents/cv-mathias-wicht.pdf">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>
+              Download my CV
+            </a>
+</div>
+</div>
+<figure class="portrait">
+<img alt="Portrait of Mathias Wicht" src="../assets/images/photo.jpg"/>
+</figure>
+</div>
+<div class="facts">
+<div><small>Education</small><strong>CFC in mediamatics</strong></div>
+<div><small>School</small><strong>CPNV, Sainte-Croix</strong></div>
+<div><small>Years</small><strong>2024 to 2028</strong></div>
+<div><small>Region</small><strong>Canton of Vaud</strong></div>
+</div>
+</div>
+</section>
+<!-- Profil -->
+<section class="block" id="profil">
+<div class="wrap">
+<div class="head fade">
+<div>
+<span class="kicker">Profile</span>
+<h2>Web first, design on top</h2>
+<p>Two skills that go together: I design and build websites, and I can also create the visuals that go with them.</p>
+</div>
+</div>
+<div class="profile">
+<div class="side main fade">
+<span class="level"><i></i>Main field</span>
+<h3>Web development</h3>
+<p>It's what I enjoy most and what I want to do later on. I like following a site from start to finish.</p>
+<ol class="steps">
+<li><b>01</b><span><strong>Analysis</strong>Understanding the company, its audience and its competitors.</span></li>
+<li><b>02</b><span><strong>Mockup in Figma</strong>Desktop and mobile pages, before writing any code.</span></li>
+<li><b>03</b><span><strong>Development</strong>HTML, CSS and JavaScript, or WordPress and WooCommerce depending on the project.</span></li>
+<li><b>04</b><span><strong>Launch</strong>Testing on several screens, hosting and site maintenance.</span></li>
+</ol>
+</div>
+<div class="side fade">
+<span class="level"><i></i>On the side</span>
+<h3>Graphic design</h3>
+<p>I use it for my projects and for fun, under the name T1as.</p>
+<ul class="plain">
+<li><strong>Layout</strong> of brochures in InDesign</li>
+<li><strong>Visual identity</strong> and brand guidelines in Illustrator</li>
+<li><strong>Posters</strong> and photo retouching in Photoshop</li>
+<li><strong>Video</strong> to present a project</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Vidéo -->
+<section class="block" id="video">
+<div class="wrap">
+<div class="head fade">
+<div>
+<span class="kicker">Showreel</span>
+<h2>My portfolio on video</h2>
+<p>A quick look at my web projects and my graphic work.</p>
+</div>
+</div>
+<div class="video fade">
+<video controls="" playsinline="" poster="../assets/video/portfolio-poster.jpg" preload="metadata">
+<source src="../assets/video/mathias-wicht-portfolio.mp4" type="video/mp4"/>
+          Your browser can't play this video.
+        </video>
+</div>
+</div>
+</section>
+<!-- Projets web -->
+<section class="block" id="projets">
+<div class="wrap">
+<div class="head fade">
+<div>
+<span class="kicker">Web projects</span>
+<h2>From mockup to launch</h2>
+<p>A real live project, a full Figma mockup and three sites made during my apprenticeship.</p>
+</div>
+</div>
+<article class="feature fade">
+<div class="po-media">
+<span class="po-label b">The live site · desktop</span>
+<button aria-label="See the Open Days site pages" class="po-browser" data-tall="po-site">
+<span class="po-bar"><i></i><i></i><i></i><em>po2026.mediamatique.ch</em></span>
+<span class="po-screen"><img alt="2026 Media Open Days website, homepage on desktop" src="../assets/images/po2026/site-index-full.jpg"/></span>
+</button>
+<span class="po-label m">My mockup</span>
+<button aria-label="See the mockup" class="po-maq" data-tall="po-maquette"><img alt="2026 Media Open Days mockup made by Mathias" src="../assets/images/po2026/maquette-page.jpg"/></button>
+<span class="po-credit">Mascot and poster: Open Days design team</span>
+</div>
+<div class="f-body">
+<span class="tag">Real project · live</span>
+<h3>Mediamatics Open Days website</h3>
+<p class="meta">CPNV, Sainte-Croix · 2026 · Web lead</p>
+<p>The mediamatics Open Days take place on 27 and 28 November 2026. They're organised by a group of apprentices, in which I'm the web lead. I built the event website: schedule, presentation of the programme and the team, in the Japanese theme chosen for this edition.</p>
+<ul class="checks">
+<li>Mockup, layout and design of the site</li>
+<li>Development, mobile version and hosting</li>
+<li>Teamwork with design, communication and multimedia</li>
+</ul>
+<div class="actions">
+<a class="btn btn-blue" href="projets/portes-ouvertes-2026.html">See the project <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<button class="btn" data-tall="po-maquette">See the mockup</button>
+<a class="btn" href="https://po2026.mediamatique.ch/index.html" rel="noopener" target="_blank">Visit the site</a>
+</div>
+</div>
+</article>
+<article class="feature figma fade">
+<div class="f-body">
+<span class="tag">Figma mockup</span>
+<h3>Régimo Lausanne, static web project</h3>
+<p class="meta">CPNV, 2<sup>nd</sup> year · 2025</p>
+<p>Redesign of the website of a property management agency in Lausanne. Before drawing anything, I analysed the company, its target audience and its competitors in a design brief. Then I made the mockups in Figma, for desktop and mobile.</p>
+<ul class="checks">
+<li>Analysis brief: company, target audience, competitors, positioning</li>
+<li>Figma mockups of the Home and Contact pages</li>
+<li>Full mobile version</li>
+</ul>
+<div class="actions">
+<a class="btn btn-blue" href="projets/regimo-lausanne.html">See the project <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<button class="btn" data-tall="regimo-desk">See the mockup</button>
+</div>
+</div>
+<div aria-label="Preview of the Figma mockups" class="fig-media">
+<div class="fig-bar"><i></i><i></i><i></i><span>Régimo Lausanne · Figma</span></div>
+<span class="fig-label d">Desktop · 1440</span>
+<span class="fig-label m">Mobile · 390</span>
+<button aria-label="Enlarge the desktop mockup" class="fig-desk" data-tall="regimo-desk"><img alt="Figma mockup of the homepage, desktop version" src="../assets/images/regimo/accueil-desktop.jpg"/></button>
+<button aria-label="Enlarge the mobile mockup" class="fig-mob" data-tall="regimo-mob"><img alt="Figma mockup of the homepage, mobile version" src="../assets/images/regimo/accueil-mobile.jpg"/></button>
+</div>
+</article>
+<div class="projects">
+<article class="project fade">
+<div class="pic"><img alt="Voko website" src="../assets/images/voko/site-final.jpg" style="object-fit:cover;object-position:top"/></div>
+<div class="txt">
+<div class="row"><span class="tag">Brand and e-commerce</span><span>2026</span></div>
+<h3>Voko, strength training gear</h3>
+<p>A brand built from scratch: persona and user flow, logo, then two versions of the site up to a Shopify-ready store.</p>
+<div class="tools"><span>Persona</span><span>Visual identity</span><span>Shopify</span></div>
+<a class="more" href="projets/voko.html">See the project in detail →</a>
+</div>
+</article>
+<article class="project fade">
+<div class="pic"><img alt="Preview of the Pulse project" src="../assets/images/sites/site-optimisation.jpg"/></div>
+<div class="txt">
+<div class="row"><span class="tag">Rebranding</span><span>2026</span></div>
+<h3>Pulse, designing with AI</h3>
+<p>Full rebranding of an earbuds brand, from positioning to website, using AI as a tool. Logo, packaging, poster and site, while keeping control of every decision.</p>
+<div class="tools"><span>Identity</span><span>AI</span><span>Website</span></div>
+<a class="more" href="projets/site-ia.html">See the project in detail →</a>
+</div>
+</article>
+<article class="project fade">
+<div class="pic" style="position:relative"><img alt="Visual of the fictional company MathiasBox Monthly, AI-generated image" src="../assets/images/sites/site-mathiasbox.jpg"/><span class="ai-badge">AI-generated</span></div>
+<div class="txt">
+<div class="row"><span class="tag">E-commerce</span><span>2025 to 2026</span></div>
+<h3>MathiasBox Monthly</h3>
+<p>E-commerce site for a fictional subscription box company, built as a group on WordPress and WooCommerce. I handled the content and the product catalogue.</p>
+<div class="tools"><span>WordPress</span><span>WooCommerce</span><span>Copywriting</span></div>
+<a class="more" href="projets/mathiasbox.html">See the project in detail →</a>
+</div>
+</article>
+</div>
+<p class="note fade">Pulse, MathiasBox Monthly and Régimo are school projects, Voko is a personal project. The Open Days site is a real live project.</p>
+</div>
+</section>
+<!-- Print -->
+<section class="block" id="print">
+<div class="wrap">
+<div class="head fade">
+<div>
+<span class="kicker">Layout and identity</span>
+<h2>Brochures and brand guidelines</h2>
+<p>Projects made in my 2<sup>nd</sup> year at CPNV in InDesign and Illustrator. You can flip through the brochures right here.</p>
+</div>
+</div>
+<article class="print-card wide fade">
+<button aria-label="Flip through the Warsaw brochure" class="cover" data-book="varsovie">
+<span class="pages">16 pages</span>
+<span class="book3d"><img alt="Cover of the Warsaw brochure" src="../assets/images/brochures/varsovie/page-01.jpg"/></span>
+</button>
+<div class="print-body">
+<div class="row"><span class="tag">Digital brochure</span><span>2025 to 2026</span></div>
+<h3>Warsaw brochure, city guide</h3>
+<p>A 16-page travel guide to Warsaw, designed as an issue of the "Cities of the world" series. The whole layout is done in InDesign, with the colours of the Polish flag and the Warsaw mermaid as a common thread.</p>
+<ul class="checks">
+<li>Contents, transport, hotels, historic sites and museums</li>
+<li>Restaurants, nightlife and a page of useful links with QR codes</li>
+<li>Grid, master pages and page numbering in InDesign</li>
+</ul>
+<div class="thumbs">
+<button aria-label="Open at page 6" data-book="varsovie" data-page="6"><img alt="Royal Castle page" loading="lazy" src="../assets/images/brochures/varsovie/page-06.jpg"/></button>
+<button aria-label="Open at page 8" data-book="varsovie" data-page="8"><img alt="Market Square page" loading="lazy" src="../assets/images/brochures/varsovie/page-08.jpg"/></button>
+<button aria-label="Open at page 10" data-book="varsovie" data-page="10"><img alt="Fryderyk Chopin Museum page" loading="lazy" src="../assets/images/brochures/varsovie/page-10.jpg"/></button>
+<button aria-label="Open at page 12" data-book="varsovie" data-page="12"><img alt="Soul Kitchen page" loading="lazy" src="../assets/images/brochures/varsovie/page-12.jpg"/></button>
+</div>
+<div class="actions"><button class="btn btn-blue" data-book="varsovie">Flip through the brochure</button><a class="btn" href="projets/brochure-varsovie.html">Project details <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+</div>
+</article>
+<div class="print-grid">
+<article class="print-card fade">
+<button aria-label="Flip through the Letterpress printing brochure" class="cover" data-book="impression">
+<span class="pages">12 pages</span>
+<span class="book3d"><img alt="Cover of the Letterpress printing brochure" src="../assets/images/brochures/impression/page-01.jpg"/></span>
+</button>
+<div class="print-body">
+<div class="row"><span class="tag">Printed brochure</span><span>2025 to 2026</span></div>
+<h3>Letterpress printing</h3>
+<p>A 12-page brochure made in the ICT-274 module on printing methods: history of the technique, examples, FAQ and a comparison with offset and digital printing.</p>
+<div class="tools"><span>InDesign</span><span>Imposition</span><span>Prepress</span></div>
+<div class="actions"><button class="btn" data-book="impression">Flip through</button><a class="btn" href="projets/impression-typographique.html">Details</a></div>
+</div>
+</article>
+<article class="print-card fade">
+<button aria-label="Flip through the L'inscrit brand guidelines" class="cover landscape" data-book="inscrit">
+<span class="pages">21 pages</span>
+<span class="book3d"><img alt="Cover of the L'inscrit newspaper brand guidelines" src="../assets/images/inscrit/charte/page-01.jpg"/></span>
+</button>
+<div class="print-body">
+<div class="row"><span class="tag">Visual identity</span><span>2025 to 2026</span></div>
+<h3>Brand guidelines, L'inscrit newspaper</h3>
+<p>Full identity for a newspaper: logo and variants, colours, typefaces, clear space and misuse, then applied to a business card, an envelope, an A4 letterhead and a flyer.</p>
+<div class="tools"><span>Illustrator</span><span>InDesign</span><span>Mockups</span></div>
+<div class="actions"><button class="btn" data-book="inscrit">See the guidelines</button><a class="btn" href="projets/charte-linscrit.html">Details</a></div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- Créations -->
+<section class="block" id="creations">
+<div class="wrap">
+<div class="head fade">
+<div>
+<span class="kicker">Free time</span>
+<h2>Posters and creations</h2>
+<p>Posters I make in Photoshop around esports and sport, published under the name T1as.</p>
+</div>
+<a href="https://www.instagram.com/t1as.design/" rel="noopener" target="_blank">See on Instagram</a>
+</div>
+<div class="gallery" id="gallery">
+<button class="item fade" data-sub="Esports poster · cut-out, photo retouching and textured background" data-title="HEROIC, hades"><div class="pic"><img alt="HEROIC hades poster" loading="lazy" src="../assets/images/posters/poster-hades.jpg"/></div><span><strong>HEROIC, hades</strong><small>Esports poster</small></span></button>
+<button class="item fade" data-sub="Esports poster · team palette, player in the centre" data-title="GamerLegion, hypex"><div class="pic"><img alt="GamerLegion hypex poster" loading="lazy" src="../assets/images/posters/poster-hypex.jpg"/></div><span><strong>GamerLegion, hypex</strong><small>Esports poster</small></span></button>
+<button class="item fade" data-sub="Esports poster · gold duotone, grunge texture and signature" data-title="Team Vitality, apEX"><div class="pic"><img alt="Team Vitality apEX poster" loading="lazy" src="../assets/images/posters/poster-apex.jpg"/></div><span><strong>Team Vitality, apEX</strong><small>Esports poster</small></span></button>
+<button class="item fade" data-sub="Esports poster · player announcement with crosshair and sponsors" data-title="Team Falcons, m0NESY"><div class="pic"><img alt="Team Falcons m0NESY poster" loading="lazy" src="../assets/images/posters/poster-monesy.jpg"/></div><span><strong>Team Falcons, m0NESY</strong><small>Esports poster</small></span></button>
+<button class="item fade" data-sub="Esports poster · same series, new pose and new framing" data-title="Team Falcons, NiKo"><div class="pic"><img alt="Team Falcons NiKo poster" loading="lazy" src="../assets/images/posters/poster-niko.jpg"/></div><span><strong>Team Falcons, NiKo</strong><small>Esports poster</small></span></button>
+<button class="item fade" data-sub="Esports poster · double exposure on a dark background" data-title="FUT Esports, ScreaM"><div class="pic"><img alt="FUT Esports ScreaM poster" loading="lazy" src="../assets/images/posters/poster-scream.jpg"/></div><span><strong>FUT Esports, ScreaM</strong><small>Esports poster</small></span></button>
+<button class="item fade" data-sub="Esports poster · Canadian flag, red and black mood" data-title="FaZe Clan, Twistzz"><div class="pic"><img alt="FaZe Clan Twistzz poster" loading="lazy" src="../assets/images/posters/poster-twistzz.jpg"/></div><span><strong>FaZe Clan, Twistzz</strong><small>Esports poster</small></span></button>
+<button class="item fade" data-sub="Esports poster · teal duotone and overlay" data-title="Aurora Gaming, XANTARES"><div class="pic"><img alt="Aurora Gaming XANTARES poster" loading="lazy" src="../assets/images/posters/poster-xantares.jpg"/></div><span><strong>Aurora Gaming, XANTARES</strong><small>Esports poster</small></span></button>
+<button class="item fade" data-sub="Sports poster · several poses and London landmarks" data-title="Anthony Joshua"><div class="pic"><img alt="Anthony Joshua poster" loading="lazy" src="../assets/images/posters/poster-joshua.jpg"/></div><span><strong>Anthony Joshua</strong><small>Sports poster</small></span></button>
+<button class="item fade" data-sub="Logo · first creation in Figma, placement at Niseko (2023)" data-title="Le Local"><div class="pic white"><img alt="Le Local logo" loading="lazy" src="../assets/images/logos/design-lelocal.png"/></div><span><strong>Le Local</strong><small>Restaurant logo, 2023</small></span></button>
+<a class="insta fade" href="https://www.instagram.com/t1as.design/" rel="noopener" target="_blank">
+<img alt="T1as" src="../assets/images/brand/t1as-logo.png"/>
+<strong>@t1as.design</strong>
+<p>All my posters and new creations are on my Instagram account.</p>
+<span>Open Instagram</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Parcours -->
+<section class="block" id="parcours">
+<div class="wrap">
+<div class="head fade">
+<div>
+<span class="kicker">Background</span>
+<h2>Education and experience</h2>
+</div>
+</div>
+<div class="path">
+<div class="fade">
+<h3>Education</h3>
+<div class="step now">
+<time>August 2024 to June 2028</time>
+<h4>CFC in mediamatics (Swiss federal VET diploma)</h4>
+<p class="where">CPNV, Sainte-Croix</p>
+<p>An apprenticeship that combines web development, digital communication, visual design, project management and digital tools.</p>
+</div>
+<div class="step">
+<time>August 2021 to June 2024</time>
+<h4>Compulsory school</h4>
+<p class="where">École des Trois-Sapins</p>
+<p>Lower secondary school.</p>
+</div>
+</div>
+<div class="fade">
+<h3>Experience</h3>
+<div class="step now">
+<time>2026</time>
+<h4>Web lead, mediamatics Open Days</h4>
+<p class="where">CPNV, Sainte-Croix</p>
+<ul>
+<li>Mockup, design and layout of the event website</li>
+<li>Hosting and launch</li>
+</ul>
+</div>
+<div class="step">
+<time>16 November 2023</time>
+<h4>Mediamatics discovery day</h4>
+<p class="where">CPNV, Sainte-Croix</p>
+<ul>
+<li>Discovering the classes, activities and how CPNV works</li>
+<li>First contact with teachers and apprentices</li>
+</ul>
+</div>
+<div class="step">
+<time>17 to 19 April 2023</time>
+<h4>Mediamatics work placement</h4>
+<p class="where">Niseko, Crissier</p>
+<ul>
+<li>Discovering the job and first steps in Figma</li>
+<li>First creation for the restaurant Le Local</li>
+<li>Seeing how projects are managed in a real company</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Compétences -->
+<section class="block" id="competences">
+<div class="wrap">
+<div class="head fade">
+<div>
+<span class="kicker">Skills</span>
+<h2>Tools and languages</h2>
+</div>
+</div>
+<div class="skills">
+<div class="skill main fade">
+<h3><svg fill="none" stroke-width="2" viewbox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"></path></svg>Web</h3>
+<span class="sub">My main field</span>
+<ul>
+<li>HTML / CSS <span>Responsive</span></li>
+<li>JavaScript <span>Interactions</span></li>
+<li>WordPress <span>WooCommerce</span></li>
+<li>Figma <span>Mockups</span></li>
+<li>Launch <span>Hosting</span></li>
+</ul>
+</div>
+<div class="skill fade">
+<h3><svg fill="none" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="3"></circle></svg>Design</h3>
+<span class="sub">On the side</span>
+<ul>
+<li>Photoshop</li>
+<li>Illustrator</li>
+<li>InDesign</li>
+</ul>
+</div>
+<div class="skill fade">
+<h3><svg fill="none" stroke-width="2" viewbox="0 0 24 24"><rect height="18" rx="2" width="16" x="4" y="3"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg>Office</h3>
+<span class="sub">Office suite</span>
+<ul>
+<li>Word</li>
+<li>PowerPoint</li>
+<li>Excel</li>
+</ul>
+</div>
+<div class="skill fade">
+<h3><svg fill="none" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.5 2.6 3.6 5.6 3.6 9s-1.1 6.4-3.6 9c-2.5-2.6-3.6-5.6-3.6-9S9.5 5.6 12 3z"></path></svg>Languages</h3>
+<span class="sub">Levels</span>
+<ul>
+<li>French <span>Native</span></li>
+<li>English <span>B2</span></li>
+<li>German <span>B1</span></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- À propos -->
+<section class="block" id="apropos">
+<div class="wrap about">
+<div class="about-text fade">
+<span class="kicker">About</span>
+<h2>Outside of school</h2>
+<p>My first contact with mediamatics was a three-day placement at Niseko in Crissier, in 2023. That's where I discovered Figma and made my first creation for a real client, the restaurant Le Local.</p>
+<p>Today, I spend a good part of my free time <strong>building websites</strong> and watching videos online to learn new things. I also make posters, which I post on Instagram under the name <strong>T1as</strong>.</p>
+<p>Besides all that, I like doing sport.</p>
+</div>
+<div class="hobbies">
+<div class="hobby fade">
+<div class="ico"><svg fill="none" stroke-width="2" viewbox="0 0 24 24"><rect height="14" rx="2" width="18" x="3" y="4"></rect><path d="M8 21h8M12 18v3"></path></svg></div>
+<div><h4>Tech and web</h4><p>Building websites, keeping up with what's happening on the web and watching videos about it.</p></div>
+</div>
+<div class="hobby fade">
+<div class="ico"><svg fill="none" stroke-width="2" viewbox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path></svg></div>
+<div><h4>Design</h4><p>Posters for fun, mostly around esports and sport.</p></div>
+</div>
+<div class="hobby fade">
+<div class="ico"><svg fill="none" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7l4 3-1.5 4.5h-5L8 10z"></path></svg></div>
+<div><h4>Sport</h4><p>Besides web and design, I like doing sport.</p></div>
+</div>
+</div>
+</div>
+</section>
+<!-- CV -->
+<section class="block" id="cv">
+<div class="wrap">
+<div class="cv fade">
+<a aria-label="Open my CV" class="cv-thumb" href="../documents/cv-mathias-wicht.pdf" rel="noopener" target="_blank"><img alt="Preview of my CV" src="../assets/images/cv/cv-apercu.jpg"/></a>
+<div>
+<span class="kicker">Curriculum vitae</span>
+<h2>My CV</h2>
+<p>Everything about me on one page: education, experience, projects, skills and languages.</p>
+<p>I'm looking for an internship or work placement starting in August 2027, ideally in web. My CV is in French.</p>
+<div class="actions">
+<a class="btn btn-blue" download="" href="../documents/cv-mathias-wicht.pdf">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>
+              Download (PDF)
+            </a>
+<a class="btn" href="../documents/cv-mathias-wicht.pdf" rel="noopener" target="_blank">Open in the browser</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact -->
+<section class="block" id="contact">
+<div class="wrap contact">
+<div class="contact-info fade">
+<span class="kicker">Contact</span>
+<h2>Get in touch</h2>
+<p>For an internship, a web project or just a question, you can email me or use the form.</p>
+<div class="links">
+<a href="mailto:wichtmathias0@gmail.com">
+<svg fill="none" stroke-width="2" viewbox="0 0 24 24"><rect height="14" rx="2" width="18" x="3" y="5"></rect><path d="M3 7l9 6 9-6"></path></svg>
+<span><small>Email</small>wichtmathias0@gmail.com</span>
+</a>
+<a href="https://www.linkedin.com/in/mathias-wicht-8a5030327/" rel="noopener" target="_blank">
+<svg fill="none" stroke-width="2" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><path d="M7 10v7M7 7v.01M11 17v-7M11 13a3 3 0 016 0v4"></path></svg>
+<span><small>LinkedIn</small>Mathias Wicht</span>
+</a>
+<a href="https://www.instagram.com/t1as.design/" rel="noopener" target="_blank">
+<svg fill="none" stroke-width="2" viewbox="0 0 24 24"><rect height="18" rx="5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4"></circle></svg>
+<span><small>Instagram</small>@t1as.design</span>
+</a>
+<div>
+<svg fill="none" stroke-width="2" viewbox="0 0 24 24"><path d="M12 21s-6-5.3-6-11a6 6 0 0112 0c0 5.7-6 11-6 11z"></path><circle cx="12" cy="10" r="2"></circle></svg>
+<span><small>Region</small>Canton of Vaud, Switzerland</span>
+</div>
+</div>
+</div>
+<form class="fade" id="form">
+<div class="field"><label for="f-name">Name</label><input autocomplete="name" id="f-name" required=""/></div>
+<div class="field"><label for="f-mail">Email</label><input autocomplete="email" id="f-mail" required="" type="email"/></div>
+<div class="field full"><label for="f-subject">Subject</label>
+<select id="f-subject">
+<option>Internship or work placement</option>
+<option>Web project</option>
+<option>Graphic design project</option>
+<option>Other</option>
+</select>
+</div>
+<div class="field full"><label for="f-msg">Message</label><textarea id="f-msg" required=""></textarea></div>
+<button class="btn btn-blue" type="submit">Send</button>
+<small>The button opens your email app with the message already filled in.</small>
+</form>
+</div>
+</section>
+</main>
+<footer>
+<div class="wrap foot">
+<span class="foot-brand"><img alt="T1as" src="../assets/images/brand/t1as-logo.png"/> © <span id="year">2026</span> Mathias Wicht</span>
+<nav>
+<a href="https://www.linkedin.com/in/mathias-wicht-8a5030327/" rel="noopener" target="_blank">LinkedIn</a>
+<a href="https://www.instagram.com/t1as.design/" rel="noopener" target="_blank">Instagram</a>
+<a download="" href="../documents/cv-mathias-wicht.pdf">Download my CV</a>
+<a href="#haut">Back to top</a>
+</nav>
+</div>
+</footer>
+<div aria-hidden="true" class="viewer" id="viewer">
+<button aria-label="Close" class="v-btn v-close" id="vClose"><svg fill="none" stroke-width="2" viewbox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+<button aria-label="Previous image" class="v-btn v-prev" id="vPrev"><svg fill="none" stroke-width="2" viewbox="0 0 24 24"><path d="M15 6l-6 6 6 6"></path></svg></button>
+<button aria-label="Next image" class="v-btn v-next" id="vNext"><svg fill="none" stroke-width="2" viewbox="0 0 24 24"><path d="M9 6l6 6-6 6"></path></svg></button>
+<figure><img alt="" id="vImg" src=""/><figcaption id="vCap"></figcaption></figure>
+</div>
+<div aria-hidden="true" aria-modal="true" class="reader" id="reader" role="dialog">
+<div class="r-top">
+<h3><span id="rTitle">Brochure</span><small id="rSub"></small></h3>
+<div class="r-tools">
+<span class="r-count" id="rCount"></span>
+<button aria-label="Close" class="r-btn" id="rClose"><svg fill="none" stroke-width="2" viewbox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+</div>
+<div class="r-stage" id="rStage">
+<button aria-label="Previous page" class="r-btn side-btn prev" id="rPrev"><svg fill="none" stroke-width="2" viewbox="0 0 24 24"><path d="M15 6l-6 6 6 6"></path></svg></button>
+<div class="book" id="book">
+<div class="slot left" id="slotL"><img alt=""/></div>
+<div class="slot right" id="slotR"><img alt=""/></div>
+</div>
+<button aria-label="Next page" class="r-btn side-btn next" id="rNext"><svg fill="none" stroke-width="2" viewbox="0 0 24 24"><path d="M9 6l6 6-6 6"></path></svg></button>
+</div>
+<div class="r-bottom">
+<div class="r-strip" id="rStrip"></div>
+<p class="r-hint">Click a page to turn it, use the arrow keys or swipe on mobile.</p>
+</div>
+</div>
+<script>
+  // ---------- Menu et défilement ----------
+  const menu = document.getElementById('menu');
+  const burger = document.getElementById('burger');
+  burger.addEventListener('click', () => { menu.classList.toggle('open'); burger.classList.toggle('open'); });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menu.classList.remove('open'); burger.classList.remove('open'); }));
+
+  const links = [...menu.querySelectorAll('a')];
+  const bar = document.getElementById('progress');
+  const onScroll = () => {
+    let current = '';
+    links.forEach(a => {
+      const s = document.querySelector(a.getAttribute('href'));
+      if (s && s.offsetTop - 140 <= window.scrollY) current = a.getAttribute('href');
+    });
+    links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === current));
+    const h = document.documentElement;
+    bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ---------- Apparition ----------
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+  // ---------- Visionneuse d'images ----------
+  const viewer = document.getElementById('viewer');
+  const vImg = document.getElementById('vImg');
+  const vCap = document.getElementById('vCap');
+  let vList = [], vIndex = 0;
+
+  const vShow = () => {
+    const it = vList[vIndex];
+    vImg.src = it.src; vImg.alt = it.title;
+    vCap.innerHTML = '<strong>' + it.title + '</strong>' + (it.sub ? '<br>' + it.sub : '');
+    const multi = vList.length > 1;
+    document.getElementById('vPrev').style.display = multi ? '' : 'none';
+    document.getElementById('vNext').style.display = multi ? '' : 'none';
+  };
+  const vOpen = (list, i, tall, width) => {
+    vList = list; vIndex = i; vShow();
+    viewer.classList.toggle('tall', !!tall);
+    viewer.style.setProperty('--tw', (width || 1000) + 'px');
+    viewer.scrollTop = 0;
+    viewer.classList.add('open');
+    viewer.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+  const vClose = () => { viewer.classList.remove('open'); viewer.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; };
+  const vMove = d => { vIndex = (vIndex + d + vList.length) % vList.length; vShow(); viewer.scrollTop = 0; };
+
+  const fromEl = el => {
+    const img = el.tagName === 'IMG' ? el : el.querySelector('img');
+    return { src: img.getAttribute('src'), title: el.dataset.title, sub: el.dataset.sub };
+  };
+  const items = [...document.querySelectorAll('#gallery .item')];
+  items.forEach((el, i) => el.addEventListener('click', () => vOpen(items.map(fromEl), i)));
+  document.querySelectorAll('.zoomable').forEach(el => el.addEventListener('click', () => vOpen([fromEl(el)], 0)));
+
+  const talls = {
+    'po-maquette': { width: 760, list: [
+      { src: '../assets/images/po2026/maquette-page.jpg', title: 'Open Days 2026 mockup', sub: 'My page mockup, before development' },
+      { src: '../assets/images/po2026/maquette-guide.jpg', title: 'Style guide', sub: 'Colours and fonts of the mockup' },
+      { src: '../assets/images/po2026/maquette-fin.jpg', title: 'Footer', sub: 'Mockup of the bottom of the page' }
+    ]},
+    'po-site': { width: 1200, list: [
+      { src: '../assets/images/po2026/site-index-full.jpg', title: 'Open Days site, home', sub: 'Live version, desktop' },
+      { src: '../assets/images/po2026/site-plan-full.jpg', title: 'Open Days site, building map', sub: 'Live version, desktop' },
+      { src: '../assets/images/po2026/site-creation-full.jpg', title: 'Open Days site, business creation', sub: 'Live version, desktop' },
+      { src: '../assets/images/po2026/site-infos-full.jpg', title: 'Open Days site, practical info', sub: 'Live version, desktop' }
+    ]},
+    'regimo-desk': { width: 1100, list: [
+      { src: '../assets/images/regimo/accueil-desktop.jpg', title: 'Régimo Lausanne, homepage', sub: 'Figma mockup, desktop version' },
+      { src: '../assets/images/regimo/contact-desktop.jpg', title: 'Régimo Lausanne, contact page', sub: 'Figma mockup, desktop version' }
+    ]},
+    'regimo-mob': { width: 400, list: [
+      { src: '../assets/images/regimo/accueil-mobile.jpg', title: 'Régimo Lausanne, homepage', sub: 'Figma mockup, mobile version' },
+      { src: '../assets/images/regimo/contact-mobile.jpg', title: 'Régimo Lausanne, contact page', sub: 'Figma mockup, mobile version' }
+    ]}
+  };
+  document.querySelectorAll('[data-tall]').forEach(b => b.addEventListener('click', () => {
+    const t = talls[b.dataset.tall];
+    vOpen(t.list, 0, true, t.width);
+  }));
+
+  document.getElementById('vClose').addEventListener('click', vClose);
+  document.getElementById('vPrev').addEventListener('click', () => vMove(-1));
+  document.getElementById('vNext').addEventListener('click', () => vMove(1));
+  viewer.addEventListener('click', e => { if (e.target === viewer || e.target.tagName === 'FIGURE') vClose(); });
+
+  // ---------- Liseuse de brochures ----------
+  const pad = n => String(n).padStart(2, '0');
+  const pagesOf = (dir, n) => Array.from({ length: n }, (_, i) => dir + '/page-' + pad(i + 1) + '.jpg');
+  const books = {
+    varsovie: { title: 'Warsaw brochure', sub: 'City guide · 16 pages · InDesign', pages: pagesOf('../assets/images/brochures/varsovie', 16), ratio: 899 / 1274, spread: true },
+    impression: { title: 'Letterpress printing', sub: 'ICT-274 brochure · 12 pages · InDesign', pages: pagesOf('../assets/images/brochures/impression', 12), ratio: 874 / 1240, spread: true },
+    inscrit: { title: 'L\'inscrit brand guidelines', sub: 'Visual identity · 21 pages', pages: pagesOf('../assets/images/inscrit/charte', 21), ratio: 1204 / 851, spread: false }
+  };
+
+  const reader = document.getElementById('reader');
+  const stage = document.getElementById('rStage');
+  const bookEl = document.getElementById('book');
+  const slotL = document.getElementById('slotL');
+  const slotR = document.getElementById('slotR');
+  const strip = document.getElementById('rStrip');
+  const rPrev = document.getElementById('rPrev');
+  const rNext = document.getElementById('rNext');
+  let cur = null, spreads = [], si = 0, busy = false, single = false;
+
+  const buildSpreads = () => {
+    const n = cur.pages.length;
+    if (single) return Array.from({ length: n }, (_, i) => [null, i]);
+    const s = [[null, 0]];
+    for (let i = 1; i < n; i += 2) s.push([i, i + 1 < n ? i + 1 : null]);
+    return s;
+  };
+  const setSlot = (slot, idx) => {
+    const img = slot.querySelector('img');
+    if (idx === null) { slot.classList.add('empty'); img.style.visibility = 'hidden'; }
+    else { slot.classList.remove('empty'); img.src = cur.pages[idx]; img.alt = cur.title + ', page ' + (idx + 1); img.style.visibility = ''; }
+  };
+  const sizeBook = () => {
+    const mobile = window.innerWidth < 760;
+    const sw = stage.clientWidth - (mobile ? 24 : 170);
+    const sh = stage.clientHeight - (mobile ? 84 : 40);
+    const cols = single ? 1 : 2;
+    let ph = sh, pw = ph * cur.ratio;
+    if (pw * cols > sw) { pw = sw / cols; ph = pw / cur.ratio; }
+    bookEl.style.setProperty('--pw', Math.floor(pw) + 'px');
+    bookEl.style.setProperty('--ph', Math.floor(ph) + 'px');
+  };
+  const shift = (l, r) => {
+    bookEl.classList.toggle('cover-only', !single && l === null);
+    bookEl.classList.toggle('back-only', !single && r === null);
+  };
+  const render = () => {
+    const [l, r] = spreads[si];
+    bookEl.classList.toggle('single', single);
+    shift(l, r);
+    setSlot(slotL, l); setSlot(slotR, r);
+    const shown = [l, r].filter(v => v !== null).map(v => v + 1);
+    document.getElementById('rCount').textContent = (shown.length > 1 ? 'Pages ' + shown.join(' and ') : 'Page ' + shown[0]) + ' of ' + cur.pages.length;
+    rPrev.disabled = si === 0;
+    rNext.disabled = si === spreads.length - 1;
+    const visible = [l, r].filter(v => v !== null);
+    strip.querySelectorAll('button').forEach((b, i) => b.classList.toggle('on', visible.includes(i)));
+    const on = strip.querySelector('button.on');
+    if (on) strip.scrollTo({ left: on.offsetLeft - strip.clientWidth / 2 + on.clientWidth / 2, behavior: 'smooth' });
+  };
+
+  const face = (idx, cls) => idx === null
+    ? '<div class="face ' + cls + ' blank"></div>'
+    : '<div class="face ' + cls + '"><img src="' + cur.pages[idx] + '" alt=""><span class="shade"></span></div>';
+
+  const flip = dir => {
+    if (busy || !cur) return;
+    const target = si + dir;
+    if (target < 0 || target >= spreads.length) return;
+    if (single) {
+      si = target; render();
+      slotR.classList.remove('single-in', 'back'); void slotR.offsetWidth;
+      slotR.classList.add('single-in'); if (dir < 0) slotR.classList.add('back');
+      return;
+    }
+    busy = true;
+    const [l, r] = spreads[si];
+    const [nl, nr] = spreads[target];
+    const leaf = document.createElement('div');
+    leaf.className = 'leaf ' + (dir > 0 ? 'to-left' : 'to-right');
+    leaf.innerHTML = dir > 0 ? face(r, 'front') + face(nl, 'back') : face(l, 'front') + face(nr, 'back');
+    bookEl.appendChild(leaf);
+    if (dir > 0) setSlot(slotR, nr); else setSlot(slotL, nl);
+    shift(dir > 0 ? l : nl, dir > 0 ? nr : r);
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      leaf.classList.add('flipping');
+      leaf.style.transform = dir > 0 ? 'rotateY(-180deg)' : 'rotateY(180deg)';
+      shift(nl, nr);
+    }));
+    let finished = false;
+    const done = () => { if (finished) return; finished = true; leaf.remove(); si = target; render(); busy = false; };
+    leaf.addEventListener('transitionend', e => { if (e.target === leaf) done(); });
+    setTimeout(done, 1000);
+  };
+
+  const goToPage = p => {
+    const idx = spreads.findIndex(s => s.includes(p));
+    if (idx >= 0) { si = idx; render(); }
+  };
+
+  const openBook = (key, page) => {
+    cur = books[key];
+    single = !cur.spread || window.innerWidth < 760;
+    spreads = buildSpreads();
+    si = 0;
+    document.getElementById('rTitle').textContent = cur.title;
+    document.getElementById('rSub').textContent = cur.sub;
+    strip.innerHTML = cur.pages.map((src, i) => '<button aria-label="Go to page ' + (i + 1) + '"><img src="' + src + '" alt="" loading="lazy"></button>').join('');
+    strip.querySelectorAll('button').forEach((b, i) => b.addEventListener('click', () => goToPage(i)));
+    cur.pages.forEach(src => { const im = new Image(); im.src = src; });
+    reader.classList.add('open');
+    reader.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    sizeBook();
+    if (page) goToPage(page - 1); else render();
+  };
+  const closeBook = () => { reader.classList.remove('open'); reader.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; };
+
+  document.querySelectorAll('[data-book]').forEach(b => b.addEventListener('click', () => openBook(b.dataset.book, parseInt(b.dataset.page || '0', 10))));
+  rPrev.addEventListener('click', () => flip(-1));
+  rNext.addEventListener('click', () => flip(1));
+  slotR.addEventListener('click', () => flip(1));
+  slotL.addEventListener('click', () => flip(-1));
+  document.getElementById('rClose').addEventListener('click', closeBook);
+  window.addEventListener('resize', () => {
+    if (!reader.classList.contains('open')) return;
+    const was = single;
+    single = !cur.spread || window.innerWidth < 760;
+    if (was !== single) {
+      const [l, r] = spreads[si];
+      const p = r !== null ? r : l;
+      spreads = buildSpreads();
+      goToPage(p);
+    }
+    sizeBook();
+  });
+  let tx = null;
+  stage.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+  stage.addEventListener('touchend', e => {
+    if (tx === null) return;
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 40) flip(dx < 0 ? 1 : -1);
+    tx = null;
+  });
+
+  // ---------- Clavier ----------
+  document.addEventListener('keydown', e => {
+    if (reader.classList.contains('open')) {
+      if (e.key === 'Escape') closeBook();
+      if (e.key === 'ArrowRight') flip(1);
+      if (e.key === 'ArrowLeft') flip(-1);
+      return;
+    }
+    if (viewer.classList.contains('open')) {
+      if (e.key === 'Escape') vClose();
+      if (e.key === 'ArrowRight' && vList.length > 1) vMove(1);
+      if (e.key === 'ArrowLeft' && vList.length > 1) vMove(-1);
+    }
+  });
+
+  // ---------- Formulaire ----------
+  document.getElementById('form').addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('f-name').value;
+    const mail = document.getElementById('f-mail').value;
+    const subject = document.getElementById('f-subject').value;
+    const msg = document.getElementById('f-msg').value;
+    const body = msg + '\n\n' + name + '\n' + mail;
+    window.location.href = 'mailto:wichtmathias0@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

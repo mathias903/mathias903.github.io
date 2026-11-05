@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mathias Wicht | Médiamaticien, développement web</title>
+<meta name="description" content="Portfolio de Mathias Wicht, apprenti médiamaticien au CPNV de Sainte-Croix. Développement web avant tout, design graphique en complément. Responsable web des Portes Ouvertes Média 2026.">
+<meta name="theme-color" content="#05070d">
+<meta property="og:title" content="Mathias Wicht | Médiamaticien, développement web">
+<meta property="og:description" content="Sites web, maquettes Figma, brochures et créations graphiques.">
+<meta property="og:image" content="assets/video/t1as-portfolio-poster.jpg">
+<link rel="icon" type="image/png" href="assets/images/logos/logo-t1as.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; scroll-padding-top:84px; }
+
+  :root{
+    --bg:#05070d;
+    --bg-2:rgba(17,23,38,0.75);
+    --card:rgba(20,27,45,0.62);
+    --line:rgba(255,255,255,0.09);
+    --line-2:rgba(255,255,255,0.16);
+    --text:#e9edf5;
+    --text-2:#a3adc2;
+    --text-3:#6b7690;
+    --blue:#3b82f6;
+    --blue-2:#2563eb;
+    --cyan:#38bdf8;
+    --blue-soft:rgba(59,130,246,0.12);
+    --radius:4px;
+    --w:1120px;
+  }
+
+  /* Fond (repris de la v1) */
+  .bg{ position:fixed; inset:0; z-index:-1; pointer-events:none; overflow:hidden; background:var(--bg); }
+  .orb{ position:absolute; border-radius:50%; filter:blur(90px); opacity:0.55; }
+  .orb-1{ width:520px; height:520px; background:radial-gradient(circle, rgba(59,130,246,0.55), transparent 70%); top:-160px; left:-120px; animation:float1 22s ease-in-out infinite; }
+  .orb-2{ width:460px; height:460px; background:radial-gradient(circle, rgba(56,189,248,0.35), transparent 70%); bottom:-140px; right:-100px; animation:float2 26s ease-in-out infinite; }
+  .orb-3{ width:360px; height:360px; background:radial-gradient(circle, rgba(29,78,216,0.4), transparent 70%); top:40%; left:55%; animation:float3 30s ease-in-out infinite; }
+  @keyframes float1{ 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(60px,80px); } }
+  @keyframes float2{ 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(-70px,-50px); } }
+  @keyframes float3{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(-40px,60px) scale(1.1); } }
+  .grid-bg{ position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px); background-size:64px 64px; -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 20%, black 40%, transparent 90%); mask-image:radial-gradient(ellipse 80% 60% at 50% 20%, black 40%, transparent 90%); }
+  .bg-fade{ position:absolute; inset:0; background:radial-gradient(ellipse 60% 50% at 50% 0%, transparent 0%, var(--bg) 85%); opacity:0.6; }
+  #progress{ position:fixed; top:0; left:0; height:3px; width:0; z-index:60; background:linear-gradient(90deg,#1d4ed8,#3b82f6,#38bdf8); box-shadow:0 0 12px rgba(59,130,246,0.8); }
+
+  body{ background:var(--bg); color:var(--text); font-family:'Instrument Sans',system-ui,sans-serif; font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3,h4{ font-family:'Bricolage Grotesque','Instrument Sans',sans-serif; font-weight:700; line-height:1.12; letter-spacing:-0.025em; }
+  a{ color:inherit; text-decoration:none; }
+  img{ display:block; max-width:100%; }
+  ul, ol{ list-style:none; }
+  button{ font:inherit; color:inherit; background:none; border:none; cursor:pointer; }
+  ::selection{ background:var(--blue); color:#fff; }
+  :focus-visible{ outline:2px solid var(--blue); outline-offset:3px; border-radius:4px; }
+
+  .wrap{ max-width:var(--w); margin:0 auto; padding:0 28px; }
+
+  .btn{ display:inline-flex; align-items:center; gap:8px; padding:12px 20px; border-radius:4px; font-weight:500; font-size:0.95rem; border:1px solid var(--line-2); background:rgba(5,7,13,0.35); transition:background .2s, border-color .2s, color .2s, transform .2s; }
+  .btn svg{ width:16px; height:16px; flex-shrink:0; }
+  .btn:hover{ border-color:var(--blue); transform:translateY(-1px); }
+  .btn-blue{ background:var(--blue); border-color:var(--blue); color:#fff; box-shadow:none; }
+  .btn-blue:hover{ background:var(--blue-2); border-color:var(--blue-2); }
+  .tag{ display:inline-block; font-size:0.78rem; font-weight:500; color:var(--blue); background:var(--blue-soft); padding:4px 10px; border-radius:3px; }
+
+  /* ===== En-tête ===== */
+  header{ position:sticky; top:0; z-index:50; background:rgba(5,7,13,0.75); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
+  .nav{ display:flex; align-items:center; justify-content:space-between; height:68px; gap:24px; }
+  .brand{ display:flex; align-items:center; gap:12px; font-family:'Bricolage Grotesque',sans-serif; font-weight:600; }
+  .brand .logo{ height:22px; width:auto; }
+  .brand .sep{ width:1px; height:22px; background:var(--line-2); }
+  .menu{ display:flex; gap:28px; font-size:0.93rem; color:var(--text-2); }
+  .menu a{ position:relative; padding:4px 0; transition:color .2s; }
+  .menu a:hover, .menu a.on{ color:var(--text); }
+  .menu a.on::after{ content:''; position:absolute; left:0; right:0; bottom:-4px; height:2px; background:var(--blue); border-radius:2px; }
+  .nav-end{ display:flex; gap:10px; align-items:center; }
+  .lang{ display:inline-flex; border:1px solid rgba(255,255,255,.12); border-radius:3px; overflow:hidden; font-size:0.8rem; font-weight:600; letter-spacing:.04em; }
+  .lang a, .lang span{ padding:7px 10px; color:#9aa3b5; }
+  .lang a:hover{ color:#fff; }
+  .lang .on{ background:rgba(59,130,246,.18); color:#fff; }
+  @media (max-width:560px){ .brand .sep, .brand span{ display:none; } }
+  .nav .btn{ padding:9px 16px; font-size:0.9rem; }
+  .burger{ display:none; width:40px; height:40px; border-radius:3px; border:1px solid var(--line-2); align-items:center; justify-content:center; }
+  .burger span, .burger span::before, .burger span::after{ display:block; width:18px; height:2px; background:var(--text); position:relative; transition:.25s; }
+  .burger span::before, .burger span::after{ content:''; position:absolute; left:0; }
+  .burger span::before{ top:-6px; } .burger span::after{ top:6px; }
+  .burger.open span{ background:transparent; }
+  .burger.open span::before{ top:0; transform:rotate(45deg); }
+  .burger.open span::after{ top:0; transform:rotate(-45deg); }
+
+  /* ===== Intro ===== */
+  .intro{ padding:84px 0 72px; }
+  .intro-grid{ display:grid; grid-template-columns:1fr 340px; gap:64px; align-items:center; }
+  .hello{ color:var(--blue); font-weight:500; margin-bottom:14px; }
+  .intro h1{ font-size:clamp(2.4rem,5.2vw,3.8rem); margin-bottom:20px; }
+  .intro h1 span{ display:block; color:var(--text-2); font-weight:500; font-size:0.52em; margin-top:12px; letter-spacing:-0.01em; }
+  .intro p{ color:var(--text-2); font-size:1.08rem; max-width:590px; }
+  .intro p + p{ margin-top:12px; }
+  .intro p strong{ color:var(--text); font-weight:500; }
+  .intro .actions{ display:flex; gap:12px; flex-wrap:wrap; margin-top:32px; }
+  .portrait img{ width:100%; aspect-ratio:4/5; object-fit:cover; object-position:center 20%; border-radius:6px; border:1px solid var(--line-2); box-shadow:0 30px 70px rgba(0,0,0,0.45); }
+  .portrait figcaption{ margin-top:12px; font-size:0.86rem; color:var(--text-3); display:flex; align-items:center; gap:8px; }
+  .dot{ width:8px; height:8px; border-radius:50%; background:#22c55e; flex-shrink:0; animation:pulse 2.2s infinite; }
+  @keyframes pulse{ 0%{ box-shadow:0 0 0 0 rgba(34,197,94,0.5); } 70%{ box-shadow:0 0 0 8px rgba(34,197,94,0); } 100%{ box-shadow:0 0 0 0 rgba(34,197,94,0); } }
+
+  .facts{ display:grid; grid-template-columns:repeat(4,1fr); margin-top:64px; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--bg-2); backdrop-filter:blur(6px); }
+  .facts div{ padding:18px 22px; }
+  .facts div + div{ border-left:1px solid var(--line); }
+  .facts small{ display:block; font-size:0.78rem; color:var(--text-3); margin-bottom:4px; }
+  .facts strong{ font-weight:500; font-size:0.96rem; }
+
+  /* ===== Sections ===== */
+  section.block{ padding:96px 0; border-top:1px solid var(--line); }
+  .head{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:44px; flex-wrap:wrap; }
+  .kicker{ display:block; font-size:0.8rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--blue); margin-bottom:10px; }
+  .head h2{ font-size:clamp(1.8rem,3.4vw,2.4rem); }
+  .head p{ color:var(--text-2); max-width:560px; margin-top:10px; }
+  .head > a{ color:var(--blue); font-size:0.94rem; }
+  .head > a:hover{ text-decoration:underline; }
+
+  /* ===== Profil ===== */
+  .profile{ display:grid; grid-template-columns:1.25fr 1fr; gap:24px; }
+  .side{ border:1px solid var(--line); border-radius:6px; background:var(--card); padding:32px; }
+  .side.main{ border-color:rgba(59,130,246,0.35); background:linear-gradient(160deg, rgba(59,130,246,0.14), rgba(20,27,45,0.62) 55%); }
+  .side .level{ display:inline-flex; align-items:center; gap:8px; font-size:0.8rem; font-weight:500; color:var(--text-2); margin-bottom:16px; }
+  .side.main .level{ color:var(--cyan); }
+  .side .level i{ width:8px; height:8px; border-radius:50%; background:currentColor; }
+  .side h3{ font-size:1.4rem; margin-bottom:10px; }
+  .side > p{ color:var(--text-2); margin-bottom:20px; }
+  .steps{ display:grid; gap:10px; }
+  .steps li{ display:flex; gap:14px; align-items:flex-start; padding:12px 14px; border-radius:4px; background:rgba(5,7,13,0.35); border:1px solid var(--line); }
+  .steps b{ font-family:'Bricolage Grotesque',sans-serif; font-weight:600; color:var(--blue); font-size:0.85rem; min-width:22px; padding-top:1px; }
+  .steps span{ color:var(--text-2); font-size:0.93rem; }
+  .steps span strong{ color:var(--text); font-weight:500; display:block; }
+  .plain li{ position:relative; padding:10px 0 10px 22px; border-top:1px solid var(--line); color:var(--text-2); font-size:0.94rem; }
+  .plain li::before{ content:''; position:absolute; left:2px; top:19px; width:8px; height:8px; border-radius:2px; background:var(--text-3); }
+  .plain li strong{ color:var(--text); font-weight:500; }
+
+  /* ===== Vidéo ===== */
+  .video{ border-radius:6px; overflow:hidden; border:1px solid var(--line-2); background:#000; box-shadow:0 30px 70px rgba(0,0,0,0.45); }
+  .video video{ display:block; width:100%; aspect-ratio:16/9; background:#000; }
+
+  /* ===== Projets phares ===== */
+  .feature{ display:grid; grid-template-columns:1.1fr 1fr; border:1px solid var(--line); border-radius:6px; overflow:hidden; background:var(--card); margin-bottom:24px; }
+  .po-media{ position:relative; background:linear-gradient(180deg,#a9b6d6,#e3c2c6); min-height:460px; overflow:hidden; }
+  .po-browser{ position:absolute; left:5%; top:52px; width:66%; bottom:40px; border-radius:4px; overflow:hidden; background:#fff; box-shadow:0 24px 50px rgba(0,0,0,0.35); cursor:zoom-in; display:flex; flex-direction:column; padding:0; border:0; text-align:left; }
+  .po-bar{ height:28px; flex:none; background:#1b2131; display:flex; align-items:center; gap:6px; padding:0 12px; }
+  .po-bar i{ width:8px; height:8px; border-radius:50%; background:#ff5f57; } .po-bar i:nth-child(2){ background:#febc2e; } .po-bar i:nth-child(3){ background:#28c840; }
+  .po-bar em{ font-style:normal; font-size:0.68rem; color:#9aa3b5; margin-left:10px; background:#262d40; padding:3px 10px; border-radius:3px; }
+  .po-screen{ flex:1; overflow:hidden; display:block; }
+  .po-screen img, .po-maq img{ width:100%; display:block; transition:transform 8s ease; }
+  .po-browser:hover .po-screen img{ transform:translateY(-70%); }
+  .po-maq{ position:absolute; right:5%; top:84px; width:23%; bottom:40px; overflow:hidden; border-radius:4px; background:#fff; box-shadow:0 20px 44px rgba(0,0,0,0.35); outline:1px solid #0d99ff; outline-offset:3px; cursor:zoom-in; padding:0; border:0; }
+  .po-maq:hover img{ transform:translateY(-78%); }
+  .po-label{ position:absolute; font-size:0.7rem; color:#1b2131; font-weight:600; letter-spacing:.02em; }
+  .po-label.b{ left:5%; top:28px; } .po-label.m{ right:5%; top:60px; color:#0d6fd1; }
+  .po-credit{ position:absolute; left:12px; bottom:10px; font-size:0.72rem; color:rgba(27,33,49,0.7); }
+  .f-body{ padding:40px; display:flex; flex-direction:column; }
+  .f-body .tag{ margin-bottom:14px; align-self:flex-start; }
+  .f-body h3{ font-size:1.55rem; margin-bottom:6px; }
+  .meta{ font-size:0.88rem; color:var(--text-3); margin-bottom:18px; }
+  .f-body > p{ color:var(--text-2); margin-bottom:18px; }
+  .checks li{ position:relative; padding-left:26px; color:var(--text-2); font-size:0.95rem; margin-bottom:8px; }
+  .checks li::before{ content:''; position:absolute; left:2px; top:8px; width:12px; height:7px; border-left:2px solid var(--blue); border-bottom:2px solid var(--blue); transform:rotate(-45deg); }
+  .f-body .actions{ margin-top:auto; padding-top:24px; display:flex; gap:12px; flex-wrap:wrap; }
+
+  .feature.figma{ grid-template-columns:1fr 1.1fr; }
+  .fig-media{ position:relative; min-height:480px; overflow:hidden; background:#1e1e1e; border-left:1px solid var(--line); }
+  .fig-bar{ position:absolute; top:0; left:0; right:0; height:34px; background:#2c2c2c; border-bottom:1px solid #3a3a3a; display:flex; align-items:center; gap:8px; padding:0 14px; font-size:0.74rem; color:#b3b3b3; z-index:2; }
+  .fig-bar i{ width:9px; height:9px; border-radius:50%; }
+  .fig-bar i:nth-child(1){ background:#ff5f57; } .fig-bar i:nth-child(2){ background:#febc2e; } .fig-bar i:nth-child(3){ background:#28c840; }
+  .fig-bar span{ margin-left:10px; }
+  .fig-desk{ position:absolute; left:6%; top:64px; width:64%; bottom:28px; overflow:hidden; border-radius:4px; box-shadow:0 20px 50px rgba(0,0,0,0.5); background:#fff; cursor:zoom-in; outline:1px solid #0d99ff; outline-offset:3px; }
+  .fig-desk img{ width:100%; transition:transform 7s ease; }
+  .fig-desk:hover img{ transform:translateY(-62%); }
+  .fig-mob{ position:absolute; right:6%; top:96px; width:22%; bottom:28px; overflow:hidden; border-radius:4px; box-shadow:0 20px 50px rgba(0,0,0,0.5); background:#fff; cursor:zoom-in; outline:1px solid #0d99ff; outline-offset:3px; }
+  .fig-mob img{ width:100%; transition:transform 7s ease; }
+  .fig-mob:hover img{ transform:translateY(-80%); }
+  .fig-label{ position:absolute; font-size:0.7rem; color:#0d99ff; z-index:2; }
+  .fig-label.d{ left:6%; top:44px; } .fig-label.m{ right:6%; top:76px; }
+
+  /* ===== Autres projets ===== */
+  .projects{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+  .project{ display:flex; flex-direction:column; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--card); transition:border-color .25s, transform .25s; }
+  .project:hover{ border-color:var(--line-2); transform:translateY(-3px); }
+  .project .pic{ aspect-ratio:16/10; background:var(--bg-2); border-bottom:1px solid var(--line); overflow:hidden; display:flex; align-items:center; justify-content:center; }
+  .project .pic img{ width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
+  .project:hover .pic img{ transform:scale(1.03); }
+  .ai-badge{ position:absolute; left:10px; bottom:10px; z-index:2; font-size:0.7rem; font-weight:600; color:#fff; background:rgba(5,7,13,0.78); border:1px solid rgba(255,255,255,0.18); padding:4px 8px; border-radius:3px; pointer-events:none; }
+  .project .pic.white{ background:#fff; }
+  .project .pic.white img{ width:34%; height:auto; object-fit:contain; }
+  .project .txt{ padding:22px 24px 24px; flex:1; display:flex; flex-direction:column; }
+  .row{ display:flex; justify-content:space-between; gap:12px; align-items:center; margin-bottom:10px; }
+  .row > span:last-child{ font-size:0.85rem; color:var(--text-3); }
+  .project h3{ font-size:1.12rem; margin-bottom:10px; }
+  .project p{ color:var(--text-2); font-size:0.93rem; margin-bottom:14px; }
+  .tools{ display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; }
+  .tools span{ font-size:0.78rem; color:var(--text-2); border:1px solid var(--line-2); padding:3px 9px; border-radius:3px; }
+  .project .more{ display:inline-block; margin-top:16px; color:var(--blue); font-size:0.9rem; font-weight:500; }
+  .project .more:hover{ text-decoration:underline; }
+  .note{ margin-top:24px; font-size:0.88rem; color:var(--text-3); }
+
+  /* ===== Print ===== */
+  .print-card{ border:1px solid var(--line); border-radius:6px; background:var(--card); overflow:hidden; display:grid; grid-template-columns:220px 1fr; }
+  .print-card.wide{ grid-template-columns:400px 1fr; margin-bottom:24px; }
+  .print-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+  .cover{ position:relative; display:flex; align-items:center; justify-content:center; padding:34px; background:radial-gradient(120% 90% at 30% 20%, rgba(59,130,246,0.18), rgba(5,7,13,0.35)); border-right:1px solid var(--line); perspective:900px; }
+  .cover .book3d{ position:relative; display:block; width:100%; transform:rotateY(-14deg); transition:transform .5s ease; }
+  .cover:hover .book3d{ transform:rotateY(-4deg) translateY(-4px); }
+  .cover img{ width:100%; border-radius:2px 3px 3px 2px; box-shadow:18px 22px 40px rgba(0,0,0,0.55); }
+  .cover .book3d::before{ content:''; position:absolute; left:0; top:0; bottom:0; width:10px; background:linear-gradient(90deg, rgba(0,0,0,0.35), transparent); z-index:1; }
+  .cover.landscape .book3d{ transform:none; }
+  .cover.landscape:hover .book3d{ transform:translateY(-4px); }
+  .cover.landscape .book3d::before{ display:none; }
+  .cover.landscape img{ border-radius:3px; }
+  .cover .pages{ position:absolute; top:12px; left:12px; font-size:0.74rem; padding:3px 9px; border-radius:3px; background:rgba(5,7,13,0.8); border:1px solid var(--line-2); color:var(--text-2); z-index:2; }
+  .print-body{ padding:30px 32px; display:flex; flex-direction:column; }
+  .print-card.wide .print-body h3{ font-size:1.55rem; }
+  .print-body h3{ font-size:1.25rem; margin-bottom:10px; }
+  .print-body > p{ color:var(--text-2); font-size:0.95rem; margin-bottom:16px; }
+  .print-body .actions{ margin-top:auto; padding-top:22px; display:flex; gap:12px; flex-wrap:wrap; }
+  .thumbs{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:6px 0 4px; }
+  .thumbs button{ border-radius:4px; overflow:hidden; border:1px solid var(--line-2); transition:transform .2s, border-color .2s; }
+  .thumbs button:hover{ transform:translateY(-3px); border-color:var(--blue); }
+  .thumbs img{ width:100%; aspect-ratio:899/1274; object-fit:cover; }
+
+  /* ===== Créations ===== */
+  .gallery{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; align-items:start; }
+  .item{ min-width:0; width:100%; text-align:left; display:flex; flex-direction:column; gap:10px; }
+  .item .pic{ aspect-ratio:4/5; border-radius:4px; overflow:hidden; border:1px solid var(--line); background:var(--bg-2); }
+  .item .pic img{ width:100%; height:100%; object-fit:cover; object-position:top; transition:transform .5s ease; }
+  .item:hover .pic img{ transform:scale(1.04); }
+  .item .pic.white{ background:#fff; display:flex; align-items:center; justify-content:center; }
+  .item .pic.white img{ width:60%; height:auto; object-fit:contain; }
+  .item strong{ font-weight:500; font-size:0.95rem; display:block; }
+  .item small{ color:var(--text-3); font-size:0.82rem; }
+  .insta{ border:1px dashed var(--line-2); border-radius:4px; padding:24px; aspect-ratio:4/5; display:flex; flex-direction:column; justify-content:center; gap:10px; transition:border-color .2s; background:rgba(5,7,13,0.3); }
+  .insta:hover{ border-color:var(--blue); }
+  .insta img{ width:110px; }
+  .insta strong{ font-family:'Bricolage Grotesque',sans-serif; font-size:1.1rem; }
+  .insta p{ font-size:0.88rem; color:var(--text-2); }
+  .insta span{ color:var(--blue); font-weight:500; font-size:0.9rem; }
+
+  /* ===== Parcours ===== */
+  .path{ display:grid; grid-template-columns:1fr 1fr; gap:56px; }
+  .path h3{ font-size:1.05rem; color:var(--text-2); font-weight:500; margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid var(--line); }
+  .step{ position:relative; padding:0 0 28px 26px; border-left:1px solid var(--line-2); margin-left:6px; }
+  .step:last-child{ padding-bottom:0; }
+  .step::before{ content:''; position:absolute; left:-6px; top:6px; width:11px; height:11px; border-radius:50%; background:var(--bg); border:2px solid var(--blue); }
+  .step.now::before{ background:var(--blue); box-shadow:0 0 0 4px rgba(59,130,246,0.2); }
+  .step time{ display:block; font-size:0.85rem; color:var(--blue); margin-bottom:2px; }
+  .step h4{ font-size:1.02rem; margin-bottom:2px; }
+  .step .where{ font-size:0.88rem; color:var(--text-3); margin-bottom:8px; }
+  .step p, .step li{ color:var(--text-2); font-size:0.93rem; }
+  .step li{ position:relative; padding-left:14px; margin-bottom:3px; }
+  .step li::before{ content:''; position:absolute; left:0; top:10px; width:5px; height:5px; border-radius:50%; background:var(--text-3); }
+
+  /* ===== Compétences ===== */
+  .skills{ display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:20px; }
+  .skill{ border:1px solid var(--line); border-radius:var(--radius); padding:24px; background:var(--card); }
+  .skill.main{ border-color:rgba(59,130,246,0.35); background:linear-gradient(160deg, rgba(59,130,246,0.12), rgba(20,27,45,0.62) 60%); }
+  .skill h3{ font-size:1rem; margin-bottom:4px; display:flex; align-items:center; gap:10px; }
+  .skill h3 svg{ width:20px; height:20px; stroke:var(--blue); }
+  .skill .sub{ font-size:0.8rem; color:var(--text-3); margin-bottom:14px; display:block; }
+  .skill li{ display:flex; justify-content:space-between; gap:10px; padding:8px 0; border-top:1px solid var(--line); font-size:0.93rem; }
+  .skill li span{ color:var(--text-3); font-size:0.84rem; text-align:right; }
+
+  /* ===== À propos ===== */
+  .about{ display:grid; grid-template-columns:1.2fr 1fr; gap:56px; align-items:start; }
+  .about h2{ font-size:clamp(1.8rem,3.4vw,2.4rem); margin-bottom:20px; }
+  .about-text p{ color:var(--text-2); margin-bottom:14px; }
+  .about-text p strong{ color:var(--text); font-weight:500; }
+  .hobbies{ display:grid; gap:14px; }
+  .hobby{ display:flex; gap:16px; padding:18px 20px; border:1px solid var(--line); border-radius:var(--radius); background:var(--card); }
+  .hobby .ico{ width:42px; height:42px; border-radius:4px; background:var(--blue-soft); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .hobby .ico svg{ width:20px; height:20px; stroke:var(--blue); }
+  .hobby h4{ font-size:0.98rem; margin-bottom:2px; }
+  .hobby p{ color:var(--text-2); font-size:0.9rem; }
+
+  /* ===== CV ===== */
+  .cv{ display:grid; grid-template-columns:260px 1fr; gap:48px; align-items:center; padding:36px; border:1px solid var(--line); border-radius:6px; background:var(--card); }
+  .cv-thumb{ display:block; border-radius:3px; overflow:hidden; border:1px solid var(--line); box-shadow:0 18px 40px rgba(0,0,0,0.35); background:#fff; transition:transform .3s; }
+  .cv-thumb:hover{ transform:translateY(-4px) rotate(-1deg); }
+  .cv h2{ font-size:clamp(1.6rem,3vw,2.1rem); margin-bottom:12px; }
+  .cv p{ color:var(--text-2); margin-bottom:8px; max-width:520px; }
+  .cv .actions{ display:flex; gap:12px; flex-wrap:wrap; margin-top:22px; }
+
+  /* ===== Contact ===== */
+  .contact{ display:grid; grid-template-columns:1fr 1.2fr; gap:56px; }
+  .contact h2{ font-size:clamp(1.8rem,3.4vw,2.4rem); margin-bottom:12px; }
+  .contact-info > p{ color:var(--text-2); margin-bottom:26px; }
+  .links a, .links div{ display:flex; align-items:center; gap:14px; padding:14px 0; border-top:1px solid var(--line); transition:color .2s; }
+  .links > :last-child{ border-bottom:1px solid var(--line); }
+  .links a:hover{ color:var(--blue); }
+  .links svg{ width:18px; height:18px; stroke:var(--blue); flex-shrink:0; }
+  .links small{ display:block; font-size:0.78rem; color:var(--text-3); }
+  form{ display:grid; grid-template-columns:1fr 1fr; gap:16px; padding:28px; border:1px solid var(--line); border-radius:var(--radius); background:var(--card); }
+  .field{ display:flex; flex-direction:column; gap:6px; }
+  .field.full{ grid-column:1 / -1; }
+  label{ font-size:0.86rem; color:var(--text-2); }
+  input, select, textarea{ width:100%; font:inherit; font-size:0.95rem; color:var(--text); background:rgba(5,7,13,0.6); border:1px solid var(--line-2); border-radius:3px; padding:11px 13px; outline:none; transition:border-color .2s; }
+  input:focus, select:focus, textarea:focus{ border-color:var(--blue); }
+  textarea{ min-height:130px; resize:vertical; }
+  select option{ background:#111726; }
+  form .btn{ justify-self:start; }
+  form small{ grid-column:1 / -1; font-size:0.8rem; color:var(--text-3); }
+
+  footer{ padding:32px 0 40px; border-top:1px solid var(--line); }
+  .foot{ display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:0.88rem; color:var(--text-3); align-items:center; }
+  .foot nav{ display:flex; gap:20px; }
+  .foot a:hover{ color:var(--text); }
+  .foot-brand{ display:flex; align-items:center; gap:12px; }
+  .foot-brand img{ height:16px; width:auto; }
+
+  /* ===== Visionneuse ===== */
+  .viewer{ position:fixed; inset:0; z-index:100; background:rgba(3,5,10,0.94); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; padding:24px; opacity:0; visibility:hidden; transition:opacity .25s, visibility .25s; }
+  .viewer.open{ opacity:1; visibility:visible; }
+  .viewer figure{ max-width:min(92vw,1000px); text-align:center; }
+  .viewer img{ max-height:80vh; max-width:100%; margin:0 auto; border-radius:4px; }
+  .viewer.tall{ align-items:flex-start; overflow-y:auto; padding:70px 24px 40px; }
+  .viewer.tall figure{ width:min(88vw, var(--tw, 1000px)); max-width:none; }
+  .viewer.tall img{ max-height:none; width:100%; border-radius:3px; }
+  .viewer figcaption{ margin-top:14px; color:var(--text-2); font-size:0.92rem; }
+  .viewer figcaption strong{ color:var(--text); font-weight:500; }
+  .v-btn{ position:fixed; width:44px; height:44px; border-radius:4px; border:1px solid var(--line-2); background:#111726; display:flex; align-items:center; justify-content:center; z-index:2; }
+  .v-btn:hover{ border-color:var(--blue); }
+  .v-btn svg{ width:18px; height:18px; stroke:var(--text); }
+  .v-close{ top:20px; right:20px; }
+  .v-prev{ left:20px; top:50%; margin-top:-22px; }
+  .v-next{ right:20px; top:50%; margin-top:-22px; }
+
+  /* ===== Liseuse de brochures ===== */
+  .reader{ position:fixed; inset:0; z-index:110; background:radial-gradient(ellipse at 50% 40%, #121a2c 0%, #04060b 75%); display:grid; grid-template-rows:auto 1fr auto; opacity:0; visibility:hidden; transition:opacity .3s, visibility .3s; }
+  .reader.open{ opacity:1; visibility:visible; }
+  .r-top{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 24px; border-bottom:1px solid var(--line); }
+  .r-top h3{ font-size:1rem; }
+  .r-top small{ display:block; font-size:0.82rem; color:var(--text-3); font-family:'Instrument Sans',sans-serif; font-weight:400; }
+  .r-tools{ display:flex; align-items:center; gap:12px; }
+  .r-count{ font-size:0.88rem; color:var(--text-2); text-align:right; }
+  .r-btn{ width:40px; height:40px; border-radius:4px; border:1px solid var(--line-2); background:rgba(17,23,38,0.85); display:flex; align-items:center; justify-content:center; transition:border-color .2s, opacity .2s; }
+  .r-btn:hover{ border-color:var(--blue); }
+  .r-btn:disabled{ opacity:0.25; cursor:default; border-color:var(--line-2); }
+  .r-btn svg{ width:18px; height:18px; stroke:var(--text); }
+  .r-stage{ position:relative; display:flex; align-items:center; justify-content:center; min-height:0; overflow:hidden; }
+  .r-stage .side-btn{ position:absolute; top:50%; margin-top:-24px; width:48px; height:48px; z-index:6; }
+  .r-stage .side-btn.prev{ left:20px; } .r-stage .side-btn.next{ right:20px; }
+  .book{ position:relative; display:flex; perspective:2600px; transition:transform .6s cubic-bezier(.4,.1,.2,1); }
+  .book.cover-only{ transform:translateX(calc(var(--pw) / -2)); }
+  .book.back-only{ transform:translateX(calc(var(--pw) / 2)); }
+  .slot{ position:relative; width:var(--pw); height:var(--ph); background:#fff; overflow:hidden; cursor:pointer; }
+  .slot img{ width:100%; height:100%; object-fit:cover; display:block; user-select:none; -webkit-user-drag:none; }
+  .slot.empty{ background:transparent; cursor:default; box-shadow:none !important; }
+  .slot.empty::after{ display:none; }
+  .slot.left{ box-shadow:-12px 20px 44px rgba(0,0,0,0.5); }
+  .slot.right{ box-shadow:12px 20px 44px rgba(0,0,0,0.5); }
+  .slot.left::after{ content:''; position:absolute; top:0; bottom:0; right:0; width:44px; background:linear-gradient(90deg, transparent, rgba(0,0,0,0.16)); pointer-events:none; }
+  .slot.right::after{ content:''; position:absolute; top:0; bottom:0; left:0; width:44px; background:linear-gradient(270deg, transparent, rgba(0,0,0,0.2)); pointer-events:none; }
+  .book.single .slot.left{ display:none; }
+  .book.single .slot.right{ box-shadow:0 20px 50px rgba(0,0,0,0.5); border-radius:4px; }
+  .book.single .slot.right::after{ display:none; }
+  .leaf{ position:absolute; top:0; width:var(--pw); height:var(--ph); transform-style:preserve-3d; z-index:5; transition:transform .8s cubic-bezier(.45,.05,.25,1); }
+  .leaf.to-left{ left:var(--pw); transform-origin:left center; }
+  .leaf.to-right{ left:0; transform-origin:right center; }
+  .leaf .face{ position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; background:#fff; overflow:hidden; }
+  .leaf .face.blank{ background:transparent; }
+  .leaf .face img{ width:100%; height:100%; object-fit:cover; }
+  .leaf .back{ transform:rotateY(180deg); }
+  .leaf .shade{ position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .4s; }
+  .leaf.to-left .front .shade{ background:linear-gradient(90deg, rgba(0,0,0,0.35), rgba(0,0,0,0)); }
+  .leaf.to-right .front .shade{ background:linear-gradient(270deg, rgba(0,0,0,0.35), rgba(0,0,0,0)); }
+  .leaf.flipping .front .shade{ opacity:1; }
+  .single-in{ animation:pageIn .45s cubic-bezier(.2,.7,.2,1); }
+  .single-in.back{ animation-name:pageInBack; }
+  @keyframes pageIn{ from{ opacity:0; transform:translateX(40px); } to{ opacity:1; transform:none; } }
+  @keyframes pageInBack{ from{ opacity:0; transform:translateX(-40px); } to{ opacity:1; transform:none; } }
+  .r-bottom{ border-top:1px solid var(--line); }
+  .r-strip{ display:flex; gap:8px; overflow-x:auto; padding:12px 24px 8px; scrollbar-width:thin; }
+  .r-strip button{ flex:0 0 auto; height:70px; border-radius:3px; overflow:hidden; border:2px solid transparent; opacity:0.5; transition:opacity .2s, border-color .2s; }
+  .r-strip button:hover{ opacity:0.9; }
+  .r-strip button.on{ border-color:var(--blue); opacity:1; }
+  .r-strip img{ height:100%; width:auto; }
+  .r-hint{ font-size:0.78rem; color:var(--text-3); text-align:center; padding:0 16px 12px; }
+
+  .fade{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+  .fade.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion:reduce){ *{ transition:none !important; animation:none !important; } .fade{ opacity:1; transform:none; } html{ scroll-behavior:auto; } }
+
+  /* ===== Responsive ===== */
+  @media (max-width:980px){
+    .intro-grid{ grid-template-columns:1fr; gap:40px; }
+    .portrait{ max-width:300px; }
+    .facts{ grid-template-columns:1fr 1fr; }
+    .facts div:nth-child(3){ border-left:none; }
+    .facts div:nth-child(n+3){ border-top:1px solid var(--line); }
+    .profile{ grid-template-columns:1fr; }
+    .feature, .feature.figma{ grid-template-columns:1fr; }
+    .feature.figma .fig-media{ order:-1; border-left:none; border-bottom:1px solid var(--line); }
+    .po-media, .fig-media{ min-height:440px; }
+    .projects{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .print-card.wide{ grid-template-columns:280px 1fr; }
+    .gallery{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .skills{ grid-template-columns:1fr 1fr; }
+    .path, .about, .contact{ grid-template-columns:1fr; gap:40px; }
+    .cv{ grid-template-columns:200px 1fr; gap:32px; }
+  }
+  @media (max-width:760px){
+    .menu{ position:fixed; top:68px; left:0; right:0; flex-direction:column; gap:0; background:rgba(5,7,13,0.97); border-bottom:1px solid var(--line); padding:8px 28px 16px; display:none; }
+    .menu.open{ display:flex; }
+    .menu a{ padding:12px 0; border-bottom:1px solid var(--line); }
+    .menu a.on::after{ display:none; }
+    .burger{ display:flex; }
+    .nav .btn .lbl{ display:none; }
+    .projects{ grid-template-columns:1fr; }
+    .print-card, .print-card.wide, .print-grid{ grid-template-columns:1fr; }
+    .cover{ border-right:none; border-bottom:1px solid var(--line); }
+    .cover .book3d{ max-width:220px; }
+    .cover.landscape .book3d{ max-width:300px; }
+    .print-body{ padding:24px 22px; }
+    .gallery{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+    .insta{ grid-column:1 / -1; aspect-ratio:auto; }
+    .cv{ grid-template-columns:1fr; padding:24px; }
+    .cv-thumb{ max-width:220px; }
+    .r-stage .side-btn{ top:auto; bottom:12px; margin:0; }
+    .r-stage .side-btn.prev{ left:calc(50% - 56px); } .r-stage .side-btn.next{ right:calc(50% - 56px); }
+    .r-top{ padding:12px 16px; }
+    .r-top small{ display:none; }
+    .r-count{ white-space:nowrap; font-size:0.82rem; }
+  }
+  @media (max-width:520px){
+    .wrap{ padding:0 20px; }
+    .intro{ padding-top:48px; }
+    section.block{ padding:72px 0; }
+    .facts{ grid-template-columns:1fr; }
+    .facts div + div{ border-left:none; border-top:1px solid var(--line); }
+    .side{ padding:24px 20px; }
+    .po-media, .fig-media{ min-height:340px; }
+    .f-body{ padding:26px 22px; }
+    .skills{ grid-template-columns:1fr; }
+    form{ grid-template-columns:1fr; padding:20px; }
+    .v-prev, .v-next{ top:auto; bottom:20px; margin:0; }
+    .v-prev{ left:calc(50% - 54px); } .v-next{ right:calc(50% - 54px); }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg" aria-hidden="true"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div><div class="grid-bg"></div><div class="bg-fade"></div></div>
+<div id="progress"></div>
+
+<header>
+  <div class="wrap nav">
+    <a href="#haut" class="brand" aria-label="Mathias Wicht, retour en haut"><img class="logo" src="assets/images/brand/t1as-logo.png" alt="T1as"><i class="sep"></i><span>Mathias Wicht</span></a>
+    <nav class="menu" id="menu">
+      <a href="#profil">Profil</a>
+      <a href="#projets">Projets web</a>
+      <a href="#print">Print</a>
+      <a href="#creations">Créations</a>
+      <a href="#parcours">Parcours</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-end">
+      <div class="lang" aria-label="Langue"><span class="on">FR</span><a href="en/index.html" hreflang="en">EN</a></div>
+      <a href="documents/cv-mathias-wicht.pdf" download class="btn btn-blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+        <span class="lbl">Mon CV</span>
+      </a>
+      <button class="burger" id="burger" aria-label="Ouvrir le menu"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="haut">
+
+  <!-- Intro -->
+  <section class="intro">
+    <div class="wrap">
+      <div class="intro-grid">
+        <div>
+          <p class="hello">Bonjour, je suis</p>
+          <h1>Mathias Wicht <span>Apprenti médiamaticien, orienté développement web</span></h1>
+          <p>Je suis en 3<sup>e</sup> année de CFC de médiamaticien au CPNV de Sainte-Croix. Mon domaine, c'est <strong>le web</strong> : maquetter un site sur Figma, le coder, le tester sur mobile et le mettre en ligne.</p>
+          <p>Le <strong>design graphique</strong> vient en complément. Il me sert pour mes maquettes, mes brochures et des affiches que je fais pendant mon temps libre. Cette année, je suis aussi responsable web des Portes Ouvertes de la médiamatique.</p>
+          <div class="actions">
+            <a href="#projets" class="btn btn-blue">Voir mes projets web</a>
+            <a href="documents/cv-mathias-wicht.pdf" download class="btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+              Télécharger mon CV
+            </a>
+          </div>
+        </div>
+        <figure class="portrait">
+          <img src="assets/images/photo.jpg" alt="Portrait de Mathias Wicht">
+        </figure>
+      </div>
+
+      <div class="facts">
+        <div><small>Formation</small><strong>CFC médiamaticien</strong></div>
+        <div><small>École</small><strong>CPNV, Sainte-Croix</strong></div>
+        <div><small>Années</small><strong>2024 à 2028</strong></div>
+        <div><small>Région</small><strong>Canton de Vaud</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Profil -->
+  <section class="block" id="profil">
+    <div class="wrap">
+      <div class="head fade">
+        <div>
+          <span class="kicker">Profil</span>
+          <h2>Le web d'abord, le design en plus</h2>
+          <p>Deux compétences qui vont ensemble : je conçois et je développe des sites, et je sais aussi créer les visuels qui vont avec.</p>
+        </div>
+      </div>
+      <div class="profile">
+        <div class="side main fade">
+          <span class="level"><i></i>Domaine principal</span>
+          <h3>Développement web</h3>
+          <p>C'est ce que je préfère et ce que je veux faire plus tard. J'aime suivre un site du début à la fin.</p>
+          <ol class="steps">
+            <li><b>01</b><span><strong>Analyse</strong>Comprendre l'entreprise, son public et ses concurrents.</span></li>
+            <li><b>02</b><span><strong>Maquette sur Figma</strong>Les pages en version ordinateur et mobile, avant d'écrire du code.</span></li>
+            <li><b>03</b><span><strong>Intégration</strong>HTML, CSS et JavaScript, ou WordPress et WooCommerce selon le projet.</span></li>
+            <li><b>04</b><span><strong>Mise en ligne</strong>Tests sur plusieurs écrans, hébergement et suivi du site.</span></li>
+          </ol>
+        </div>
+        <div class="side fade">
+          <span class="level"><i></i>En complément</span>
+          <h3>Design graphique</h3>
+          <p>Je l'utilise au service de mes projets et pour le plaisir, sous le nom T1as.</p>
+          <ul class="plain">
+            <li><strong>Mise en page</strong> de brochures sur InDesign</li>
+            <li><strong>Identité visuelle</strong> et chartes graphiques sur Illustrator</li>
+            <li><strong>Affiches</strong> et retouche photo sur Photoshop</li>
+            <li><strong>Vidéo</strong> pour présenter un projet</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vidéo -->
+  <section class="block" id="video">
+    <div class="wrap">
+      <div class="head fade">
+        <div>
+          <span class="kicker">Présentation</span>
+          <h2>Mon portfolio en vidéo</h2>
+          <p>Un aperçu rapide de mes projets web et de mon travail graphique.</p>
+        </div>
+      </div>
+      <div class="video fade">
+        <video controls playsinline preload="metadata" poster="assets/video/portfolio-poster.jpg">
+          <source src="assets/video/mathias-wicht-portfolio.mp4" type="video/mp4">
+          Votre navigateur ne peut pas lire cette vidéo.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projets web -->
+  <section class="block" id="projets">
+    <div class="wrap">
+      <div class="head fade">
+        <div>
+          <span class="kicker">Projets web</span>
+          <h2>De la maquette à la mise en ligne</h2>
+          <p>Un projet réel en ligne, une maquette Figma complète et trois sites réalisés pendant ma formation.</p>
+        </div>
+      </div>
+
+      <article class="feature fade">
+        <div class="po-media">
+          <span class="po-label b">Le site en ligne · desktop</span>
+          <button class="po-browser" data-tall="po-site" aria-label="Voir les pages du site des PO">
+            <span class="po-bar"><i></i><i></i><i></i><em>po2026.mediamatique.ch</em></span>
+            <span class="po-screen"><img src="assets/images/po2026/site-index-full.jpg" alt="Site des Portes Ouvertes Média 2026, page d'accueil en version ordinateur"></span>
+          </button>
+          <span class="po-label m">Ma maquette</span>
+          <button class="po-maq" data-tall="po-maquette" aria-label="Voir la maquette"><img src="assets/images/po2026/maquette-page.jpg" alt="Maquette des Portes Ouvertes Média 2026 réalisée par Mathias"></button>
+          <span class="po-credit">Mascotte et affiche : équipe design des PO</span>
+        </div>
+        <div class="f-body">
+          <span class="tag">Projet réel · en ligne</span>
+          <h3>Site des Portes Ouvertes de la médiamatique</h3>
+          <p class="meta">CPNV, Sainte-Croix · 2026 · Responsable web</p>
+          <p>Les Portes Ouvertes de la médiamatique ont lieu les 27 et 28 novembre 2026. Elles sont organisées par un groupe d'apprentis, dans lequel je suis responsable web. J'ai réalisé le site de l'événement : programme, présentation de la formation et de l'équipe, dans l'univers japonais choisi pour cette édition.</p>
+          <ul class="checks">
+            <li>Maquette, mise en page et design du site</li>
+            <li>Intégration, version mobile et hébergement</li>
+            <li>Travail en équipe avec le design, la communication et le multimédia</li>
+          </ul>
+          <div class="actions">
+            <a href="projets/portes-ouvertes-2026.html" class="btn btn-blue">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <button class="btn" data-tall="po-maquette">Voir la maquette</button>
+            <a href="https://po2026.mediamatique.ch/index.html" target="_blank" rel="noopener" class="btn">Visiter le site</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="feature figma fade">
+        <div class="f-body">
+          <span class="tag">Maquette Figma</span>
+          <h3>Régimo Lausanne, projet webstatique</h3>
+          <p class="meta">CPNV, 2<sup>e</sup> année · 2025</p>
+          <p>Refonte du site d'une régie immobilière lausannoise. Avant de dessiner quoi que ce soit, j'ai analysé l'entreprise, son public cible et ses concurrents dans un dossier de conception. J'ai ensuite réalisé les maquettes sur Figma, en version ordinateur et mobile.</p>
+          <ul class="checks">
+            <li>Dossier d'analyse : entreprise, public cible, concurrents, positionnement</li>
+            <li>Maquettes Figma des pages Accueil et Contact</li>
+            <li>Déclinaison complète en version mobile</li>
+          </ul>
+          <div class="actions">
+            <a href="projets/regimo-lausanne.html" class="btn btn-blue">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <button class="btn" data-tall="regimo-desk">Voir la maquette</button>
+          </div>
+        </div>
+        <div class="fig-media" aria-label="Aperçu des maquettes Figma">
+          <div class="fig-bar"><i></i><i></i><i></i><span>Régimo Lausanne · Figma</span></div>
+          <span class="fig-label d">Desktop · 1440</span>
+          <span class="fig-label m">Mobile · 390</span>
+          <button class="fig-desk" data-tall="regimo-desk" aria-label="Agrandir la maquette ordinateur"><img src="assets/images/regimo/accueil-desktop.jpg" alt="Maquette Figma de la page d'accueil, version ordinateur"></button>
+          <button class="fig-mob" data-tall="regimo-mob" aria-label="Agrandir la maquette mobile"><img src="assets/images/regimo/accueil-mobile.jpg" alt="Maquette Figma de la page d'accueil, version mobile"></button>
+        </div>
+      </article>
+
+      <div class="projects">
+        <article class="project fade">
+          <div class="pic"><img src="assets/images/voko/site-final.jpg" alt="Site Voko" style="object-fit:cover;object-position:top"></div>
+          <div class="txt">
+            <div class="row"><span class="tag">Marque et e-commerce</span><span>2026</span></div>
+            <h3>Voko, matériel de musculation</h3>
+            <p>Une marque construite de A à Z : persona et user flow, logo, puis deux versions du site jusqu'à une boutique prête pour Shopify.</p>
+            <div class="tools"><span>Persona</span><span>Identité visuelle</span><span>Shopify</span></div>
+            <a href="projets/voko.html" class="more">Voir le projet en détail →</a>
+          </div>
+        </article>
+        <article class="project fade">
+          <div class="pic"><img src="assets/images/sites/site-optimisation.jpg" alt="Aperçu du projet Pulse"></div>
+          <div class="txt">
+            <div class="row"><span class="tag">Rebranding</span><span>2026</span></div>
+            <h3>Pulse, designer avec l'IA</h3>
+            <p>Rebranding complet d'une marque d'écouteurs, du positionnement au site, avec l'IA comme outil. Logo, packaging, affiche et site, en gardant la main sur chaque décision.</p>
+            <div class="tools"><span>Identité</span><span>IA</span><span>Site web</span></div>
+            <a href="projets/site-ia.html" class="more">Voir le projet en détail →</a>
+          </div>
+        </article>
+        <article class="project fade">
+          <div class="pic" style="position:relative"><img src="assets/images/sites/site-mathiasbox.jpg" alt="Visuel de l'entreprise fictive MathiasBox Monthly, image générée par IA"><span class="ai-badge">Généré par IA</span></div>
+          <div class="txt">
+            <div class="row"><span class="tag">E-commerce</span><span>2025 à 2026</span></div>
+            <h3>MathiasBox Monthly</h3>
+            <p>Site e-commerce d'une entreprise fictive de box par abonnement, réalisé en groupe sur WordPress et WooCommerce. Je me suis occupé des contenus et du catalogue de produits.</p>
+            <div class="tools"><span>WordPress</span><span>WooCommerce</span><span>Rédaction</span></div>
+            <a href="projets/mathiasbox.html" class="more">Voir le projet en détail →</a>
+          </div>
+        </article>
+      </div>
+      <p class="note fade">Pulse, MathiasBox Monthly et Régimo sont des projets scolaires, Voko est un projet perso. Le site des Portes Ouvertes est un vrai projet en ligne.</p>
+    </div>
+  </section>
+
+  <!-- Print -->
+  <section class="block" id="print">
+    <div class="wrap">
+      <div class="head fade">
+        <div>
+          <span class="kicker">Mise en page et identité</span>
+          <h2>Brochures et charte graphique</h2>
+          <p>Des projets réalisés en 2<sup>e</sup> année au CPNV sur InDesign et Illustrator. Les brochures se feuillettent directement ici.</p>
+        </div>
+      </div>
+
+      <article class="print-card wide fade">
+        <button class="cover" data-book="varsovie" aria-label="Feuilleter la brochure Varsovie">
+          <span class="pages">16 pages</span>
+          <span class="book3d"><img src="assets/images/brochures/varsovie/page-01.jpg" alt="Couverture de la brochure Varsovie"></span>
+        </button>
+        <div class="print-body">
+          <div class="row"><span class="tag">Brochure numérique</span><span>2025 à 2026</span></div>
+          <h3>Brochure Varsovie, guide de la ville</h3>
+          <p>Guide touristique de 16 pages sur Varsovie, pensé comme un numéro de la collection « Villes du monde ». Toute la mise en page est faite sur InDesign, avec les couleurs du drapeau polonais et la sirène de Varsovie comme fil rouge.</p>
+          <ul class="checks">
+            <li>Sommaire, transports, hôtels, lieux historiques et musées</li>
+            <li>Restaurants, sorties et page de liens utiles avec QR codes</li>
+            <li>Grille, gabarits et pagination sur InDesign</li>
+          </ul>
+          <div class="thumbs">
+            <button data-book="varsovie" data-page="6" aria-label="Ouvrir à la page 6"><img src="assets/images/brochures/varsovie/page-06.jpg" alt="Page Château royal" loading="lazy"></button>
+            <button data-book="varsovie" data-page="8" aria-label="Ouvrir à la page 8"><img src="assets/images/brochures/varsovie/page-08.jpg" alt="Page Place du Marché" loading="lazy"></button>
+            <button data-book="varsovie" data-page="10" aria-label="Ouvrir à la page 10"><img src="assets/images/brochures/varsovie/page-10.jpg" alt="Page Musée Frédéric Chopin" loading="lazy"></button>
+            <button data-book="varsovie" data-page="12" aria-label="Ouvrir à la page 12"><img src="assets/images/brochures/varsovie/page-12.jpg" alt="Page Soul Kitchen" loading="lazy"></button>
+          </div>
+          <div class="actions"><button class="btn btn-blue" data-book="varsovie">Feuilleter la brochure</button><a href="projets/brochure-varsovie.html" class="btn">Détails du projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </div>
+      </article>
+
+      <div class="print-grid">
+        <article class="print-card fade">
+          <button class="cover" data-book="impression" aria-label="Feuilleter la brochure Impression typographique">
+            <span class="pages">12 pages</span>
+            <span class="book3d"><img src="assets/images/brochures/impression/page-01.jpg" alt="Couverture de la brochure Impression typographique"></span>
+          </button>
+          <div class="print-body">
+            <div class="row"><span class="tag">Brochure imprimée</span><span>2025 à 2026</span></div>
+            <h3>Impression typographique</h3>
+            <p>Brochure de 12 pages réalisée dans le module ICT-274 sur les méthodes d'impression : histoire de la technique, exemples, questions fréquentes et comparatif avec l'offset et le numérique.</p>
+            <div class="tools"><span>InDesign</span><span>Imposition</span><span>Prépresse</span></div>
+            <div class="actions"><button class="btn" data-book="impression">Feuilleter</button><a href="projets/impression-typographique.html" class="btn">Détails</a></div>
+          </div>
+        </article>
+
+        <article class="print-card fade">
+          <button class="cover landscape" data-book="inscrit" aria-label="Feuilleter la charte graphique L'inscrit">
+            <span class="pages">21 pages</span>
+            <span class="book3d"><img src="assets/images/inscrit/charte/page-01.jpg" alt="Couverture de la charte graphique du journal L'inscrit"></span>
+          </button>
+          <div class="print-body">
+            <div class="row"><span class="tag">Identité visuelle</span><span>2025 à 2026</span></div>
+            <h3>Charte graphique, journal L'inscrit</h3>
+            <p>Identité complète d'un journal : logo et variantes, couleurs, typographies, zone d'exclusion et mauvais usages, puis application sur une carte de visite, une enveloppe, un en-tête A4 et un flyer.</p>
+            <div class="tools"><span>Illustrator</span><span>InDesign</span><span>Mockups</span></div>
+            <div class="actions"><button class="btn" data-book="inscrit">Voir la charte</button><a href="projets/charte-linscrit.html" class="btn">Détails</a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Créations -->
+  <section class="block" id="creations">
+    <div class="wrap">
+      <div class="head fade">
+        <div>
+          <span class="kicker">Temps libre</span>
+          <h2>Affiches et créations</h2>
+          <p>Des affiches que je fais sur Photoshop autour de l'esport et du sport, publiées sous le nom T1as.</p>
+        </div>
+        <a href="https://www.instagram.com/t1as.design/" target="_blank" rel="noopener">Voir sur Instagram</a>
+      </div>
+
+      <div class="gallery" id="gallery">
+        <button class="item fade" data-title="HEROIC, hades" data-sub="Affiche esport · détourage, retouche photo et fond texturé"><div class="pic"><img src="assets/images/posters/poster-hades.jpg" alt="Affiche HEROIC hades" loading="lazy"></div><span><strong>HEROIC, hades</strong><small>Affiche esport</small></span></button>
+        <button class="item fade" data-title="GamerLegion, hypex" data-sub="Affiche esport · palette reprise de l'équipe, joueur au centre"><div class="pic"><img src="assets/images/posters/poster-hypex.jpg" alt="Affiche GamerLegion hypex" loading="lazy"></div><span><strong>GamerLegion, hypex</strong><small>Affiche esport</small></span></button>
+        <button class="item fade" data-title="Team Vitality, apEX" data-sub="Affiche esport · duotone doré, texture grunge et signature"><div class="pic"><img src="assets/images/posters/poster-apex.jpg" alt="Affiche Team Vitality apEX" loading="lazy"></div><span><strong>Team Vitality, apEX</strong><small>Affiche esport</small></span></button>
+        <button class="item fade" data-title="Team Falcons, m0NESY" data-sub="Affiche esport · annonce de joueur avec viseur et sponsors"><div class="pic"><img src="assets/images/posters/poster-monesy.jpg" alt="Affiche Team Falcons m0NESY" loading="lazy"></div><span><strong>Team Falcons, m0NESY</strong><small>Affiche esport</small></span></button>
+        <button class="item fade" data-title="Team Falcons, NiKo" data-sub="Affiche esport · même série, nouvelle pose et nouveau cadrage"><div class="pic"><img src="assets/images/posters/poster-niko.jpg" alt="Affiche Team Falcons NiKo" loading="lazy"></div><span><strong>Team Falcons, NiKo</strong><small>Affiche esport</small></span></button>
+        <button class="item fade" data-title="FUT Esports, ScreaM" data-sub="Affiche esport · double exposition sur fond sombre"><div class="pic"><img src="assets/images/posters/poster-scream.jpg" alt="Affiche FUT Esports ScreaM" loading="lazy"></div><span><strong>FUT Esports, ScreaM</strong><small>Affiche esport</small></span></button>
+        <button class="item fade" data-title="FaZe Clan, Twistzz" data-sub="Affiche esport · drapeau canadien, ambiance rouge et noir"><div class="pic"><img src="assets/images/posters/poster-twistzz.jpg" alt="Affiche FaZe Clan Twistzz" loading="lazy"></div><span><strong>FaZe Clan, Twistzz</strong><small>Affiche esport</small></span></button>
+        <button class="item fade" data-title="Aurora Gaming, XANTARES" data-sub="Affiche esport · duotone bleu-sarcelle et superposition"><div class="pic"><img src="assets/images/posters/poster-xantares.jpg" alt="Affiche Aurora Gaming XANTARES" loading="lazy"></div><span><strong>Aurora Gaming, XANTARES</strong><small>Affiche esport</small></span></button>
+        <button class="item fade" data-title="Anthony Joshua" data-sub="Affiche sport · plusieurs poses et monuments de Londres"><div class="pic"><img src="assets/images/posters/poster-joshua.jpg" alt="Affiche Anthony Joshua" loading="lazy"></div><span><strong>Anthony Joshua</strong><small>Affiche sport</small></span></button>
+        <button class="item fade" data-title="Le Local" data-sub="Logo · première création sur Figma, stage chez Niseko (2023)"><div class="pic white"><img src="assets/images/logos/design-lelocal.png" alt="Logo Le Local" loading="lazy"></div><span><strong>Le Local</strong><small>Logo de restaurant, 2023</small></span></button>
+        <a class="insta fade" href="https://www.instagram.com/t1as.design/" target="_blank" rel="noopener">
+          <img src="assets/images/brand/t1as-logo.png" alt="T1as">
+          <strong>@t1as.design</strong>
+          <p>Toutes mes affiches et mes nouvelles créations sont sur mon compte Instagram.</p>
+          <span>Ouvrir Instagram</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parcours -->
+  <section class="block" id="parcours">
+    <div class="wrap">
+      <div class="head fade">
+        <div>
+          <span class="kicker">Parcours</span>
+          <h2>Formation et expériences</h2>
+        </div>
+      </div>
+      <div class="path">
+        <div class="fade">
+          <h3>Formation</h3>
+          <div class="step now">
+            <time>Août 2024 à juin 2028</time>
+            <h4>CFC de médiamaticien</h4>
+            <p class="where">CPNV, Sainte-Croix</p>
+            <p>Formation qui mélange développement web, communication digitale, design visuel, gestion de projet et outils numériques.</p>
+          </div>
+          <div class="step">
+            <time>Août 2021 à juin 2024</time>
+            <h4>Scolarité obligatoire</h4>
+            <p class="where">École des Trois-Sapins</p>
+            <p>Scolarité secondaire obligatoire.</p>
+          </div>
+        </div>
+        <div class="fade">
+          <h3>Expérience</h3>
+          <div class="step now">
+            <time>2026</time>
+            <h4>Responsable web, Portes Ouvertes de la médiamatique</h4>
+            <p class="where">CPNV, Sainte-Croix</p>
+            <ul>
+              <li>Maquette, design et mise en page du site de l'événement</li>
+              <li>Hébergement et mise en ligne</li>
+            </ul>
+          </div>
+          <div class="step">
+            <time>16 novembre 2023</time>
+            <h4>Journée découverte en médiamatique</h4>
+            <p class="where">CPNV, Sainte-Croix</p>
+            <ul>
+              <li>Découverte des cours, des activités et du fonctionnement du CPNV</li>
+              <li>Premiers contacts avec les enseignants et les apprentis</li>
+            </ul>
+          </div>
+          <div class="step">
+            <time>17 au 19 avril 2023</time>
+            <h4>Stage de médiamaticien</h4>
+            <p class="where">Niseko, Crissier</p>
+            <ul>
+              <li>Découverte du métier et initiation à Figma</li>
+              <li>Première création pour le restaurant Le Local</li>
+              <li>Observation de la gestion de projets dans une vraie entreprise</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compétences -->
+  <section class="block" id="competences">
+    <div class="wrap">
+      <div class="head fade">
+        <div>
+          <span class="kicker">Compétences</span>
+          <h2>Outils et langages</h2>
+        </div>
+      </div>
+      <div class="skills">
+        <div class="skill main fade">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>Web</h3>
+          <span class="sub">Mon domaine principal</span>
+          <ul>
+            <li>HTML / CSS <span>Responsive</span></li>
+            <li>JavaScript <span>Interactions</span></li>
+            <li>WordPress <span>WooCommerce</span></li>
+            <li>Figma <span>Maquettes</span></li>
+            <li>Mise en ligne <span>Hébergement</span></li>
+          </ul>
+        </div>
+        <div class="skill fade">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>Design</h3>
+          <span class="sub">En complément</span>
+          <ul>
+            <li>Photoshop</li>
+            <li>Illustrator</li>
+            <li>InDesign</li>
+          </ul>
+        </div>
+        <div class="skill fade">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>Bureautique</h3>
+          <span class="sub">Suite Office</span>
+          <ul>
+            <li>Word</li>
+            <li>PowerPoint</li>
+            <li>Excel</li>
+          </ul>
+        </div>
+        <div class="skill fade">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.6 5.6 3.6 9s-1.1 6.4-3.6 9c-2.5-2.6-3.6-5.6-3.6-9S9.5 5.6 12 3z"/></svg>Langues</h3>
+          <span class="sub">Niveaux</span>
+          <ul>
+            <li>Français <span>Maternelle</span></li>
+            <li>Anglais <span>B2</span></li>
+            <li>Allemand <span>B1</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- À propos -->
+  <section class="block" id="apropos">
+    <div class="wrap about">
+      <div class="about-text fade">
+        <span class="kicker">À propos</span>
+        <h2>En dehors des cours</h2>
+        <p>Mon premier contact avec la médiamatique, c'était un stage de trois jours chez Niseko à Crissier, en 2023. J'y ai découvert Figma et réalisé ma première création pour un vrai client, le restaurant Le Local.</p>
+        <p>Aujourd'hui, je passe une bonne partie de mon temps libre à <strong>créer des sites</strong> et à regarder des vidéos sur le web pour apprendre de nouvelles choses. Je fais aussi des affiches, que je publie sur Instagram sous le nom <strong>T1as</strong>.</p>
+        <p>À côté de tout ça, j'aime faire du sport.</p>
+      </div>
+      <div class="hobbies">
+        <div class="hobby fade">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div>
+          <div><h4>Technologie et web</h4><p>Créer des sites, suivre ce qui se fait sur le web et regarder des vidéos sur le sujet.</p></div>
+        </div>
+        <div class="hobby fade">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg></div>
+          <div><h4>Design</h4><p>Des affiches pour le plaisir, surtout autour de l'esport et du sport.</p></div>
+        </div>
+        <div class="hobby fade">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7l4 3-1.5 4.5h-5L8 10z"/></svg></div>
+          <div><h4>Sport</h4><p>À côté du web et du design, j'aime faire du sport.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CV -->
+  <section class="block" id="cv">
+    <div class="wrap">
+      <div class="cv fade">
+        <a class="cv-thumb" href="documents/cv-mathias-wicht.pdf" target="_blank" rel="noopener" aria-label="Ouvrir mon CV"><img src="assets/images/cv/cv-apercu.jpg" alt="Aperçu de mon CV"></a>
+        <div>
+          <span class="kicker">Curriculum vitae</span>
+          <h2>Mon CV</h2>
+          <p>Toutes mes informations sur une page : formation, expériences, projets, compétences et langues.</p>
+          <p>Je recherche une place de stage ou de pratique professionnelle à partir d'août 2027, de préférence dans le web.</p>
+          <div class="actions">
+            <a href="documents/cv-mathias-wicht.pdf" download class="btn btn-blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+              Télécharger (PDF)
+            </a>
+            <a href="documents/cv-mathias-wicht.pdf" target="_blank" rel="noopener" class="btn">Ouvrir dans le navigateur</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="block" id="contact">
+    <div class="wrap contact">
+      <div class="contact-info fade">
+        <span class="kicker">Contact</span>
+        <h2>Me contacter</h2>
+        <p>Pour un stage, un projet web ou simplement une question, vous pouvez m'écrire par e-mail ou via le formulaire.</p>
+        <div class="links">
+          <a href="mailto:wichtmathias0@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            <span><small>E-mail</small>wichtmathias0@gmail.com</span>
+          </a>
+          <a href="https://www.linkedin.com/in/mathias-wicht-8a5030327/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7M7 7v.01M11 17v-7M11 13a3 3 0 016 0v4"/></svg>
+            <span><small>LinkedIn</small>Mathias Wicht</span>
+          </a>
+          <a href="https://www.instagram.com/t1as.design/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
+            <span><small>Instagram</small>@t1as.design</span>
+          </a>
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 21s-6-5.3-6-11a6 6 0 0112 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>
+            <span><small>Région</small>Canton de Vaud, Suisse</span>
+          </div>
+        </div>
+      </div>
+
+      <form id="form" class="fade">
+        <div class="field"><label for="f-name">Nom</label><input id="f-name" required autocomplete="name"></div>
+        <div class="field"><label for="f-mail">E-mail</label><input id="f-mail" type="email" required autocomplete="email"></div>
+        <div class="field full"><label for="f-subject">Sujet</label>
+          <select id="f-subject">
+            <option>Stage ou pratique professionnelle</option>
+            <option>Projet web</option>
+            <option>Projet graphique</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="field full"><label for="f-msg">Message</label><textarea id="f-msg" required></textarea></div>
+        <button type="submit" class="btn btn-blue">Envoyer</button>
+        <small>Le bouton ouvre votre messagerie avec le message déjà rempli.</small>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="foot-brand"><img src="assets/images/brand/t1as-logo.png" alt="T1as"> © <span id="year">2026</span> Mathias Wicht</span>
+    <nav>
+      <a href="https://www.linkedin.com/in/mathias-wicht-8a5030327/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/t1as.design/" target="_blank" rel="noopener">Instagram</a>
+      <a href="documents/cv-mathias-wicht.pdf" download>Télécharger mon CV</a>
+      <a href="#haut">Haut de page</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="viewer" id="viewer" aria-hidden="true">
+  <button class="v-btn v-close" id="vClose" aria-label="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="v-btn v-prev" id="vPrev" aria-label="Image précédente"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <button class="v-btn v-next" id="vNext" aria-label="Image suivante"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+  <figure><img id="vImg" src="" alt=""><figcaption id="vCap"></figcaption></figure>
+</div>
+
+<div class="reader" id="reader" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="r-top">
+    <h3><span id="rTitle">Brochure</span><small id="rSub"></small></h3>
+    <div class="r-tools">
+      <span class="r-count" id="rCount"></span>
+      <button class="r-btn" id="rClose" aria-label="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+  </div>
+  <div class="r-stage" id="rStage">
+    <button class="r-btn side-btn prev" id="rPrev" aria-label="Page précédente"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <div class="book" id="book">
+      <div class="slot left" id="slotL"><img alt=""></div>
+      <div class="slot right" id="slotR"><img alt=""></div>
+    </div>
+    <button class="r-btn side-btn next" id="rNext" aria-label="Page suivante"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+  </div>
+  <div class="r-bottom">
+    <div class="r-strip" id="rStrip"></div>
+    <p class="r-hint">Cliquez sur une page pour la tourner, utilisez les flèches du clavier ou glissez sur mobile.</p>
+  </div>
+</div>
+
+<script>
+  // ---------- Menu et défilement ----------
+  const menu = document.getElementById('menu');
+  const burger = document.getElementById('burger');
+  burger.addEventListener('click', () => { menu.classList.toggle('open'); burger.classList.toggle('open'); });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menu.classList.remove('open'); burger.classList.remove('open'); }));
+
+  const links = [...menu.querySelectorAll('a')];
+  const bar = document.getElementById('progress');
+  const onScroll = () => {
+    let current = '';
+    links.forEach(a => {
+      const s = document.querySelector(a.getAttribute('href'));
+      if (s && s.offsetTop - 140 <= window.scrollY) current = a.getAttribute('href');
+    });
+    links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === current));
+    const h = document.documentElement;
+    bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ---------- Apparition ----------
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+  // ---------- Visionneuse d'images ----------
+  const viewer = document.getElementById('viewer');
+  const vImg = document.getElementById('vImg');
+  const vCap = document.getElementById('vCap');
+  let vList = [], vIndex = 0;
+
+  const vShow = () => {
+    const it = vList[vIndex];
+    vImg.src = it.src; vImg.alt = it.title;
+    vCap.innerHTML = '<strong>' + it.title + '</strong>' + (it.sub ? '<br>' + it.sub : '');
+    const multi = vList.length > 1;
+    document.getElementById('vPrev').style.display = multi ? '' : 'none';
+    document.getElementById('vNext').style.display = multi ? '' : 'none';
+  };
+  const vOpen = (list, i, tall, width) => {
+    vList = list; vIndex = i; vShow();
+    viewer.classList.toggle('tall', !!tall);
+    viewer.style.setProperty('--tw', (width || 1000) + 'px');
+    viewer.scrollTop = 0;
+    viewer.classList.add('open');
+    viewer.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+  const vClose = () => { viewer.classList.remove('open'); viewer.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; };
+  const vMove = d => { vIndex = (vIndex + d + vList.length) % vList.length; vShow(); viewer.scrollTop = 0; };
+
+  const fromEl = el => {
+    const img = el.tagName === 'IMG' ? el : el.querySelector('img');
+    return { src: img.getAttribute('src'), title: el.dataset.title, sub: el.dataset.sub };
+  };
+  const items = [...document.querySelectorAll('#gallery .item')];
+  items.forEach((el, i) => el.addEventListener('click', () => vOpen(items.map(fromEl), i)));
+  document.querySelectorAll('.zoomable').forEach(el => el.addEventListener('click', () => vOpen([fromEl(el)], 0)));
+
+  const talls = {
+    'po-maquette': { width: 760, list: [
+      { src: 'assets/images/po2026/maquette-page.jpg', title: 'Maquette PO 2026', sub: 'Ma maquette de la page, avant l\'intégration' },
+      { src: 'assets/images/po2026/maquette-guide.jpg', title: 'Guide de style', sub: 'Couleurs et polices de la maquette' },
+      { src: 'assets/images/po2026/maquette-fin.jpg', title: 'Pied de page', sub: 'Maquette du bas de page' }
+    ]},
+    'po-site': { width: 1200, list: [
+      { src: 'assets/images/po2026/site-index-full.jpg', title: 'Site des PO, accueil', sub: 'Version en ligne, ordinateur' },
+      { src: 'assets/images/po2026/site-plan-full.jpg', title: 'Site des PO, plan du bâtiment', sub: 'Version en ligne, ordinateur' },
+      { src: 'assets/images/po2026/site-creation-full.jpg', title: 'Site des PO, création d\'entreprise', sub: 'Version en ligne, ordinateur' },
+      { src: 'assets/images/po2026/site-infos-full.jpg', title: 'Site des PO, infos pratiques', sub: 'Version en ligne, ordinateur' }
+    ]},
+    'regimo-desk': { width: 1100, list: [
+      { src: 'assets/images/regimo/accueil-desktop.jpg', title: 'Régimo Lausanne, page d\'accueil', sub: 'Maquette Figma, version ordinateur' },
+      { src: 'assets/images/regimo/contact-desktop.jpg', title: 'Régimo Lausanne, page contact', sub: 'Maquette Figma, version ordinateur' }
+    ]},
+    'regimo-mob': { width: 400, list: [
+      { src: 'assets/images/regimo/accueil-mobile.jpg', title: 'Régimo Lausanne, page d\'accueil', sub: 'Maquette Figma, version mobile' },
+      { src: 'assets/images/regimo/contact-mobile.jpg', title: 'Régimo Lausanne, page contact', sub: 'Maquette Figma, version mobile' }
+    ]}
+  };
+  document.querySelectorAll('[data-tall]').forEach(b => b.addEventListener('click', () => {
+    const t = talls[b.dataset.tall];
+    vOpen(t.list, 0, true, t.width);
+  }));
+
+  document.getElementById('vClose').addEventListener('click', vClose);
+  document.getElementById('vPrev').addEventListener('click', () => vMove(-1));
+  document.getElementById('vNext').addEventListener('click', () => vMove(1));
+  viewer.addEventListener('click', e => { if (e.target === viewer || e.target.tagName === 'FIGURE') vClose(); });
+
+  // ---------- Liseuse de brochures ----------
+  const pad = n => String(n).padStart(2, '0');
+  const pagesOf = (dir, n) => Array.from({ length: n }, (_, i) => dir + '/page-' + pad(i + 1) + '.jpg');
+  const books = {
+    varsovie: { title: 'Brochure Varsovie', sub: 'Guide de la ville · 16 pages · InDesign', pages: pagesOf('assets/images/brochures/varsovie', 16), ratio: 899 / 1274, spread: true },
+    impression: { title: 'Impression typographique', sub: 'Brochure ICT-274 · 12 pages · InDesign', pages: pagesOf('assets/images/brochures/impression', 12), ratio: 874 / 1240, spread: true },
+    inscrit: { title: 'Charte graphique L\'inscrit', sub: 'Identité visuelle · 21 pages', pages: pagesOf('assets/images/inscrit/charte', 21), ratio: 1204 / 851, spread: false }
+  };
+
+  const reader = document.getElementById('reader');
+  const stage = document.getElementById('rStage');
+  const bookEl = document.getElementById('book');
+  const slotL = document.getElementById('slotL');
+  const slotR = document.getElementById('slotR');
+  const strip = document.getElementById('rStrip');
+  const rPrev = document.getElementById('rPrev');
+  const rNext = document.getElementById('rNext');
+  let cur = null, spreads = [], si = 0, busy = false, single = false;
+
+  const buildSpreads = () => {
+    const n = cur.pages.length;
+    if (single) return Array.from({ length: n }, (_, i) => [null, i]);
+    const s = [[null, 0]];
+    for (let i = 1; i < n; i += 2) s.push([i, i + 1 < n ? i + 1 : null]);
+    return s;
+  };
+  const setSlot = (slot, idx) => {
+    const img = slot.querySelector('img');
+    if (idx === null) { slot.classList.add('empty'); img.style.visibility = 'hidden'; }
+    else { slot.classList.remove('empty'); img.src = cur.pages[idx]; img.alt = cur.title + ', page ' + (idx + 1); img.style.visibility = ''; }
+  };
+  const sizeBook = () => {
+    const mobile = window.innerWidth < 760;
+    const sw = stage.clientWidth - (mobile ? 24 : 170);
+    const sh = stage.clientHeight - (mobile ? 84 : 40);
+    const cols = single ? 1 : 2;
+    let ph = sh, pw = ph * cur.ratio;
+    if (pw * cols > sw) { pw = sw / cols; ph = pw / cur.ratio; }
+    bookEl.style.setProperty('--pw', Math.floor(pw) + 'px');
+    bookEl.style.setProperty('--ph', Math.floor(ph) + 'px');
+  };
+  const shift = (l, r) => {
+    bookEl.classList.toggle('cover-only', !single && l === null);
+    bookEl.classList.toggle('back-only', !single && r === null);
+  };
+  const render = () => {
+    const [l, r] = spreads[si];
+    bookEl.classList.toggle('single', single);
+    shift(l, r);
+    setSlot(slotL, l); setSlot(slotR, r);
+    const shown = [l, r].filter(v => v !== null).map(v => v + 1);
+    document.getElementById('rCount').textContent = (shown.length > 1 ? 'Pages ' + shown.join(' et ') : 'Page ' + shown[0]) + ' sur ' + cur.pages.length;
+    rPrev.disabled = si === 0;
+    rNext.disabled = si === spreads.length - 1;
+    const visible = [l, r].filter(v => v !== null);
+    strip.querySelectorAll('button').forEach((b, i) => b.classList.toggle('on', visible.includes(i)));
+    const on = strip.querySelector('button.on');
+    if (on) strip.scrollTo({ left: on.offsetLeft - strip.clientWidth / 2 + on.clientWidth / 2, behavior: 'smooth' });
+  };
+
+  const face = (idx, cls) => idx === null
+    ? '<div class="face ' + cls + ' blank"></div>'
+    : '<div class="face ' + cls + '"><img src="' + cur.pages[idx] + '" alt=""><span class="shade"></span></div>';
+
+  const flip = dir => {
+    if (busy || !cur) return;
+    const target = si + dir;
+    if (target < 0 || target >= spreads.length) return;
+    if (single) {
+      si = target; render();
+      slotR.classList.remove('single-in', 'back'); void slotR.offsetWidth;
+      slotR.classList.add('single-in'); if (dir < 0) slotR.classList.add('back');
+      return;
+    }
+    busy = true;
+    const [l, r] = spreads[si];
+    const [nl, nr] = spreads[target];
+    const leaf = document.createElement('div');
+    leaf.className = 'leaf ' + (dir > 0 ? 'to-left' : 'to-right');
+    leaf.innerHTML = dir > 0 ? face(r, 'front') + face(nl, 'back') : face(l, 'front') + face(nr, 'back');
+    bookEl.appendChild(leaf);
+    if (dir > 0) setSlot(slotR, nr); else setSlot(slotL, nl);
+    shift(dir > 0 ? l : nl, dir > 0 ? nr : r);
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      leaf.classList.add('flipping');
+      leaf.style.transform = dir > 0 ? 'rotateY(-180deg)' : 'rotateY(180deg)';
+      shift(nl, nr);
+    }));
+    let finished = false;
+    const done = () => { if (finished) return; finished = true; leaf.remove(); si = target; render(); busy = false; };
+    leaf.addEventListener('transitionend', e => { if (e.target === leaf) done(); });
+    setTimeout(done, 1000);
+  };
+
+  const goToPage = p => {
+    const idx = spreads.findIndex(s => s.includes(p));
+    if (idx >= 0) { si = idx; render(); }
+  };
+
+  const openBook = (key, page) => {
+    cur = books[key];
+    single = !cur.spread || window.innerWidth < 760;
+    spreads = buildSpreads();
+    si = 0;
+    document.getElementById('rTitle').textContent = cur.title;
+    document.getElementById('rSub').textContent = cur.sub;
+    strip.innerHTML = cur.pages.map((src, i) => '<button aria-label="Aller à la page ' + (i + 1) + '"><img src="' + src + '" alt="" loading="lazy"></button>').join('');
+    strip.querySelectorAll('button').forEach((b, i) => b.addEventListener('click', () => goToPage(i)));
+    cur.pages.forEach(src => { const im = new Image(); im.src = src; });
+    reader.classList.add('open');
+    reader.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    sizeBook();
+    if (page) goToPage(page - 1); else render();
+  };
+  const closeBook = () => { reader.classList.remove('open'); reader.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; };
+
+  document.querySelectorAll('[data-book]').forEach(b => b.addEventListener('click', () => openBook(b.dataset.book, parseInt(b.dataset.page || '0', 10))));
+  rPrev.addEventListener('click', () => flip(-1));
+  rNext.addEventListener('click', () => flip(1));
+  slotR.addEventListener('click', () => flip(1));
+  slotL.addEventListener('click', () => flip(-1));
+  document.getElementById('rClose').addEventListener('click', closeBook);
+  window.addEventListener('resize', () => {
+    if (!reader.classList.contains('open')) return;
+    const was = single;
+    single = !cur.spread || window.innerWidth < 760;
+    if (was !== single) {
+      const [l, r] = spreads[si];
+      const p = r !== null ? r : l;
+      spreads = buildSpreads();
+      goToPage(p);
+    }
+    sizeBook();
+  });
+  let tx = null;
+  stage.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+  stage.addEventListener('touchend', e => {
+    if (tx === null) return;
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 40) flip(dx < 0 ? 1 : -1);
+    tx = null;
+  });
+
+  // ---------- Clavier ----------
+  document.addEventListener('keydown', e => {
+    if (reader.classList.contains('open')) {
+      if (e.key === 'Escape') closeBook();
+      if (e.key === 'ArrowRight') flip(1);
+      if (e.key === 'ArrowLeft') flip(-1);
+      return;
+    }
+    if (viewer.classList.contains('open')) {
+      if (e.key === 'Escape') vClose();
+      if (e.key === 'ArrowRight' && vList.length > 1) vMove(1);
+      if (e.key === 'ArrowLeft' && vList.length > 1) vMove(-1);
+    }
+  });
+
+  // ---------- Formulaire ----------
+  document.getElementById('form').addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('f-name').value;
+    const mail = document.getElementById('f-mail').value;
+    const subject = document.getElementById('f-subject').value;
+    const msg = document.getElementById('f-msg').value;
+    const body = msg + '\n\n' + name + '\n' + mail;
+    window.location.href = 'mailto:wichtmathias0@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
