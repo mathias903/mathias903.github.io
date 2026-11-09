@@ -1,7 +1,7 @@
 /* Bannière cookies + Google Analytics 4 chargé seulement après accord.
    Pour activer les statistiques, mets ton identifiant GA4 ici (ex. "G-ABC123XYZ"). */
 (function () {
-  var GA_ID = "";
+  var GA_ID = "G-L35LQPNYLX";
   var KEY = "mw-consent"; // "accepted" | "refused"
 
   var script = document.currentScript;
@@ -31,7 +31,7 @@
     window.dataLayer = window.dataLayer || [];
     window.gtag = function () { dataLayer.push(arguments); };
     gtag("js", new Date());
-    gtag("config", GA_ID, { anonymize_ip: true });
+    gtag("config", GA_ID, { anonymize_ip: true, cookie_flags: "SameSite=None;Secure" });
   }
 
   function clearGA() {
