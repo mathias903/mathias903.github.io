@@ -1,7 +1,7 @@
 /* Formulaire de contact : envoi via Web3Forms + captcha hCaptcha.
    Clé d'accès Web3Forms (publique, faite pour être dans le code). */
 (function () {
-  var ACCESS_KEY = "WEB3FORMS_ACCESS_KEY";
+  var ACCESS_KEY = "4c69c975-d8ff-4fea-a4e5-e3c31def6d23";
 
   var form = document.getElementById("form");
   if (!form) return;
