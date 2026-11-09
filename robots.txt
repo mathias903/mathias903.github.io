@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /documents/
+Disallow: /assets/images/cv/
+
+User-agent: Googlebot-Image
+Disallow: /documents/
+Disallow: /assets/images/cv/
 
 Sitemap: https://mathiaswicht.ch/sitemap.xml
