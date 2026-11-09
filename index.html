@@ -308,6 +308,12 @@
   textarea{ min-height:130px; resize:vertical; }
   select option{ background:#111726; }
   form .btn{ justify-self:start; }
+  form .hp{ position:absolute; left:-9999px; width:1px; height:1px; opacity:0; }
+  form .h-captcha{ min-height:78px; }
+  .form-status{ grid-column:1 / -1; margin:0; font-size:0.92rem; min-height:0; }
+  .form-status.good{ color:#4ade80; }
+  .form-status.bad{ color:#f87171; }
+  form small a{ color:inherit; text-decoration:underline; }
   form small{ grid-column:1 / -1; font-size:0.8rem; color:var(--text-3); }
 
   footer{ padding:32px 0 40px; border-top:1px solid var(--line); }
@@ -952,19 +958,24 @@
       </div>
 
       <form id="form" class="fade">
-        <div class="field"><label for="f-name">Nom</label><input id="f-name" required autocomplete="name"></div>
-        <div class="field"><label for="f-mail">E-mail</label><input id="f-mail" type="email" required autocomplete="email"></div>
+        <div class="field"><label for="f-name">Nom</label><input id="f-name" name="name" required autocomplete="name"></div>
+        <div class="field"><label for="f-mail">E-mail</label><input id="f-mail" name="email" type="email" required autocomplete="email"></div>
         <div class="field full"><label for="f-subject">Sujet</label>
-          <select id="f-subject">
+          <select id="f-subject" name="topic">
             <option>Stage ou pratique professionnelle</option>
             <option>Projet web</option>
             <option>Projet graphique</option>
             <option>Autre</option>
           </select>
         </div>
-        <div class="field full"><label for="f-msg">Message</label><textarea id="f-msg" required></textarea></div>
+        <div class="field full"><label for="f-msg">Message</label><textarea id="f-msg" name="message" required></textarea></div>
+        <input type="hidden" name="access_key" value="">
+        <input type="hidden" name="from_name" value="Portfolio Mathias Wicht">
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="field full"><div class="h-captcha" data-captcha="true" data-theme="dark"></div></div>
         <button type="submit" class="btn btn-blue">Envoyer</button>
-        <small>Le bouton ouvre votre messagerie avec le message déjà rempli.</small>
+        <p class="form-status" role="status" aria-live="polite"></p>
+        <small>Protégé par hCaptcha. Le message est envoyé via Web3Forms, voir la <a href="confidentialite.html">politique de confidentialité</a>.</small>
       </form>
     </div>
   </section>
@@ -1265,18 +1276,11 @@
   });
 
   // ---------- Formulaire ----------
-  document.getElementById('form').addEventListener('submit', e => {
-    e.preventDefault();
-    const name = document.getElementById('f-name').value;
-    const mail = document.getElementById('f-mail').value;
-    const subject = document.getElementById('f-subject').value;
-    const msg = document.getElementById('f-msg').value;
-    const body = msg + '\n\n' + name + '\n' + mail;
-    window.location.href = 'mailto:wichtmathias0@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-  });
 
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
+<script src="https://web3forms.com/client/script.js" async defer></script>
+<script src="assets/js/contact.js"></script>
 <script src="assets/js/consent.js"></script>
 </body>
 </html>
