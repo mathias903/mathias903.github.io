@@ -466,6 +466,23 @@
     .v-prev, .v-next{ top:auto; bottom:20px; margin:0; }
     .v-prev{ left:calc(50% - 54px); } .v-next{ right:calc(50% - 54px); }
   }
+
+  /* ===== Pop-up CV ===== */
+  .cv-modal{ position:fixed; inset:0; margin:auto; width:min(860px,94vw); height:fit-content; max-height:92vh; padding:0; border:1px solid var(--line-2); border-radius:6px; background:#0b0f1a; color:var(--text); box-shadow:0 40px 90px rgba(0,0,0,.6); overflow:hidden; }
+  .cv-modal[open]{ display:flex; flex-direction:column; animation:cvIn .25s ease; }
+  .cv-modal::backdrop{ background:rgba(3,5,10,.78); backdrop-filter:blur(4px); }
+  @keyframes cvIn{ from{ opacity:0; transform:translateY(14px) scale(.98); } to{ opacity:1; transform:none; } }
+  .cv-modal-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 18px; border-bottom:1px solid var(--line); }
+  .cv-modal-head strong{ font-family:inherit; font-size:1rem; font-weight:600; }
+  .cv-modal-head div{ display:flex; align-items:center; gap:10px; }
+  .cv-modal-head .btn{ padding:9px 16px; font-size:0.9rem; }
+  .cv-close{ width:38px; height:38px; display:grid; place-items:center; border:1px solid var(--line-2); border-radius:4px; background:transparent; color:var(--text); cursor:pointer; transition:background .2s; }
+  .cv-close:hover{ background:rgba(255,255,255,.06); }
+  .cv-close svg{ width:18px; height:18px; }
+  .cv-modal-body{ overflow:auto; padding:20px; background:rgba(255,255,255,.02); }
+  .cv-modal-body img{ display:block; width:100%; height:auto; border-radius:3px; background:#fff; box-shadow:0 18px 40px rgba(0,0,0,.35); }
+  body.cv-lock{ overflow:hidden; }
+  @media (max-width:560px){ .cv-modal-head{ padding:12px; } .cv-modal-body{ padding:10px; } .cv-modal-head .lbl{ display:none; } }
 </style>
 </head>
 <body>
@@ -484,8 +501,8 @@
 </nav>
 <div class="nav-end">
 <div aria-label="Language" class="lang"><a href="../index.html" hreflang="fr">FR</a><span class="on">EN</span></div>
-<a download="CV-Mathias-Wicht-EN.pdf" class="btn btn-blue" href="../documents/cv-mathias-wicht-en.pdf?v=11">
-<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>
+<a href="../documents/cv-mathias-wicht-en.pdf?v=11" class="btn btn-blue" data-cv>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
 <span class="lbl">My CV</span>
 </a>
 <button aria-label="Open the menu" class="burger" id="burger"><span></span></button>
@@ -504,10 +521,6 @@
 <p><strong>Graphic design</strong> comes on top of that. I use it for my mockups, my brochures and the posters I make in my free time. This year, I'm also the web lead for the mediamatics Open Days.</p>
 <div class="actions">
 <a class="btn btn-blue" href="#projets">See my web projects</a>
-<a download="CV-Mathias-Wicht-EN.pdf" class="btn" href="../documents/cv-mathias-wicht-en.pdf?v=11">
-<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>
-              Download my CV
-            </a>
 </div>
 </div>
 <figure class="portrait">
@@ -888,17 +901,15 @@
 <section class="block" id="cv">
 <div class="wrap">
 <div class="cv fade">
-<a download="CV-Mathias-Wicht-EN.pdf" aria-label="Download my CV" class="cv-thumb" href="../documents/cv-mathias-wicht-en.pdf?v=11"><img alt="Preview of my CV" src="../assets/images/cv/cv-apercu-en.jpg?v=11"/></a>
+<a href="../documents/cv-mathias-wicht-en.pdf?v=11" class="cv-thumb" data-cv aria-label="See my CV"><img alt="Preview of my CV" src="../assets/images/cv/cv-apercu-en.jpg?v=11"/></a>
 <div>
 <span class="kicker">Curriculum vitae</span>
 <h2>My CV</h2>
 <p>Everything about me on one page: education, experience, projects, skills and languages.</p>
 <p>I'm looking for an internship or work placement starting in August 2027, ideally in web. My CV is in French.</p>
 <div class="actions">
-<a download="CV-Mathias-Wicht-EN.pdf" class="btn btn-blue" href="../documents/cv-mathias-wicht-en.pdf?v=11">
-<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>
-              Download (PDF)
-            </a>
+<a href="../documents/cv-mathias-wicht-en.pdf?v=11" class="btn btn-blue" data-cv><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg> See my CV</a>
+            <a download="CV-Mathias-Wicht-EN.pdf" href="../documents/cv-mathias-wicht-en.pdf?v=11" class="btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg> Download (PDF)</a>
 </div>
 </div>
 </div>
@@ -959,7 +970,7 @@
 <nav>
 <a href="https://www.linkedin.com/in/mathias-wicht-8a5030327/" rel="noopener" target="_blank">LinkedIn</a>
 <a href="https://www.instagram.com/t1as.studio/" rel="noopener" target="_blank">Instagram</a>
-<a download="CV-Mathias-Wicht-EN.pdf" href="../documents/cv-mathias-wicht-en.pdf?v=11">Download my CV</a>
+<a href="../documents/cv-mathias-wicht-en.pdf?v=11" data-cv>My CV</a>
 <a href="privacy.html">Privacy policy</a><a href="#" data-cookie-settings>Cookie settings</a>
       <a href="#haut">Back to top</a>
 </nav>
@@ -1251,5 +1262,30 @@
 <script src="https://web3forms.com/client/script.js" async defer></script>
 <script src="../assets/js/contact.js"></script>
 <script src="../assets/js/consent.js"></script>
+
+<dialog class="cv-modal" id="cvModal" aria-label="My CV">
+  <div class="cv-modal-head">
+    <strong>My CV</strong>
+    <div>
+      <a download="CV-Mathias-Wicht-EN.pdf" href="../documents/cv-mathias-wicht-en.pdf?v=11" class="btn btn-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg> <span class="lbl">Download</span></a>
+      <button type="button" class="cv-close" data-cv-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+  </div>
+  <div class="cv-modal-body"><img src="../assets/images/cv/cv-apercu-en-hd.jpg?v=12" alt="Mathias Wicht's CV" loading="lazy"></div>
+</dialog>
+<script>
+  // ---------- Pop-up CV ----------
+  (function () {
+    const dlg = document.getElementById('cvModal');
+    if (!dlg || typeof dlg.showModal !== 'function') return; // vieux navigateur : le lien ouvre le PDF
+    const close = () => dlg.close();
+    document.querySelectorAll('[data-cv]').forEach(el => el.addEventListener('click', e => {
+      e.preventDefault(); dlg.showModal(); document.body.classList.add('cv-lock');
+    }));
+    dlg.querySelector('[data-cv-close]').addEventListener('click', close);
+    dlg.addEventListener('click', e => { if (e.target === dlg) close(); });
+    dlg.addEventListener('close', () => document.body.classList.remove('cv-lock'));
+  })();
+</script>
 </body>
 </html>
